@@ -1,0 +1,120 @@
+#mailaside {
+	background-color: #191547;
+
+	.new-mail {
+		padding: 0 30px 20px 30px;
+	}
+	nav {
+		background-color: transparent;
+	}
+
+	.owner-title {
+		font-family: @font-family-serif;
+		font-weight: @font-bold;
+		color: #fff;
+		font-size: 14px;
+		text-align: center;
+		margin: 0 0 10px 0;
+	}
+}
+#mailbox {
+	.mail-pagi {
+		margin:0 10px;
+		font-size: @font-size-small;
+		line-height: 22px;
+	}
+	.mail-list-options {
+		.btn-check {
+			margin: 0;
+			float: left;
+		}
+	}
+	.mail-list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li {
+			border-bottom: 1px solid @panel-inner-border;
+			border-left: 2px solid transparent;
+			padding: 15px 15px 15px 13px;
+			&:hover, &.active {
+				background-color: @gray-lighter;
+				border-left-color: @brand-success;
+			}
+			&:last-child {
+				border-bottom: none;
+			}
+			.title {
+				color: @gray-light;
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+		
+				h6 {
+					font-weight: 500;
+					margin: 0 0 5px 0;
+				}
+				.short {
+					display: block;
+					color: fade(@gray-light, 80%);
+					font-size: 12px;
+				}	
+			}
+			.btn-check {
+				margin-top: 0;
+				margin-right: 10px;
+			}
+			.attachment {
+				float: right;
+				width: 25px;
+				height: 35px;
+			}
+			.fav {
+				display: block;
+				color: @gray-light;
+			}
+			.time-fav {
+				float: right;
+				width: 40px;
+			}
+		}
+
+	}
+
+	.mail-content {
+		.btn-link {
+			color: @gray-light;
+		}
+		.open-title {
+			font-size: @font-size-h3;
+			font-weight: 500;
+			display: block;
+		}
+		.open-title-info {
+			font-size: 12px;
+			color: @gray-light;
+		}
+		.open-date {
+			float:right;
+			font-size: 12px;
+			color: @gray-light;
+		}
+		.open-content {
+			padding: 15px;
+		}
+		.open-reply {
+			min-height: 80px;
+			margin: 40px 0 0 0;
+		}
+	}
+}
+
+body.contract { 
+	aside[role="navigation"] {
+		.owner-title, .new-mail, svg {
+			display: none;
+		}
+	}
+}

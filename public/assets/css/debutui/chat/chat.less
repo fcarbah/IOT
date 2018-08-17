@@ -1,0 +1,283 @@
+@side-bar-bg: #191547;
+
+body.chat-open {
+	.wrapper {
+		padding-right: 250px;
+	}
+	aside.chat {
+		transform: translateX(0);
+	}
+}
+
+aside.chat {
+	width: 250px;
+	height: 100%;
+	position: fixed;
+	top:0; right: 0;
+	transform: translateX(250px);
+	background-color: @side-bar-bg;
+	z-index: 2000;
+	overflow: hidden;
+
+	transition: all .1s linear;
+
+	svg {
+		width: 100%;
+		height: 180px;
+	}
+
+	.chat-content {
+		width: 500px;
+		height: 100%;
+		position: relative;	
+		transition: all .1s linear;
+	}
+	.close {
+		position: absolute;
+		top: 10px; right: 20px;
+		opacity: 0.8;
+	}
+	.back {
+		position: absolute;
+		top: 8px; left: 10px;
+		opacity: 0.8;
+	}
+
+	.chat-wrapper, .conversation-wrapper, .conversation {
+		position: relative;
+		width: 250px;
+		height: 100%;
+	}
+	.chat-wrapper, .conversation {
+		float: left;
+	}
+	.conversation {
+		padding-bottom: 50px;
+	}
+	.chat-owner {
+		color: #fff;
+		margin: 10px 0 5px 0;
+	}
+	.chat-owner-status {
+		display: block;
+		color: @brand-success;
+	}
+
+	.search {
+		position: relative;
+		border-bottom: 1px solid lighten(@brand-info, 20%);
+		margin: 0 15px;
+
+		input {
+			background: transparent;
+			border: none;
+			color: #fff;
+			font-size: @font-size-h6;
+			padding: 10px 0;
+		}
+		input + span {
+			position: absolute;
+			bottom: 10px; right: 5px;
+			color: rgba(255,255,255, .6);
+
+		}
+	}
+
+	.user-list {
+		padding: 0;
+		margin: 0;
+		display: block;
+		width: 100%;
+		li {
+			list-style: none;
+			padding: 5px 0;
+
+			&.group-name {
+				color: lighten(@brand-info, 20%);
+				margin: 10px 15px;
+			}
+
+			&:not(.group-name):hover {
+				background-color: #10123B;
+			}
+
+			a {
+				display: block;
+				width: 100%;
+				height: 50px;
+				display: table;
+				padding: 0 15px;
+			}
+
+			.avatar, .name, .status {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.avatar {
+				width: 30%;
+				position: relative;
+				svg {
+					width: 50px;
+					height: 50px;
+				}
+				.badge {
+					position: absolute;
+					top: 50%; left: -8px;
+					margin-top: -12px;
+				}
+			}
+			.name {
+				width: 60%;
+				color: #fff;
+
+				p { margin: 0; }
+				small {
+					display: block;
+					color: lighten(@brand-info, 10%);
+					font-size: @font-size-h6;
+				}
+			}
+			.status {
+				span {
+					display: block;
+					margin: 0 auto;
+					width: 10px;
+					height: 10px;
+					background-color: transparent;
+					border-radius: 100%;
+					border: 1px solid lighten(@brand-info, 20%);
+				}
+				&.active span {
+					background-color: @brand-success;
+					border: none;
+				}
+			}
+		}
+	}
+	.conversation-list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li {
+			width: 100%;
+			padding: 10px;
+			display: table;
+
+			.avatar, .message {
+				display: table-cell;
+				vertical-align: top;
+			}
+
+			.avatar {
+				width: 30%;
+				height: 40px;
+				svg {
+					display: block;
+					margin: 0 auto;
+					width: 50px;
+					height: 50px;
+				}
+				.time {
+					color: lighten(@brand-info, 10%);
+					font-size: @font-size-small - 2px;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			.message {
+				width: 70%;
+				background-color: darken(@brand-info, 10%);
+				border: 1px solid @brand-info;
+				color: #fff;
+				padding: 10px;
+				font-size: @font-size-small;
+				position: relative;
+				border-radius: 0 @border-radius-base @border-radius-base @border-radius-base;
+
+				&:before {
+					content: '';
+					display: block;
+					position: absolute;
+					width: 0; height: 0;
+					left: -12px; top: -1px;
+					border-style: solid;
+					border-width: 0 12px 12px 0;
+					border-color: transparent @brand-info transparent transparent;
+				}
+				&:after {
+					content: '';
+					display: block;
+					position: absolute;
+					width: 0; height: 0;
+					left: -9px; top: 0;
+					border-style: solid;
+					border-width: 0 12px 12px 0;
+					border-color: transparent darken(@brand-info, 10%) transparent transparent;
+				}
+			}
+			&.recipient {
+				
+			}
+			&.owner {
+				.message {
+					background-color:  @brand-info;
+					border-color: darken(@brand-info, 10%);
+					border-radius: @border-radius-base 0 @border-radius-base @border-radius-base;
+					&:before {
+						left: initial;
+						right: -12px;
+						border-color: darken(@brand-info, 10%) transparent transparent transparent;
+						border-width: 12px 12px 0 0;
+					}
+					&:after {
+						left: initial;
+						right: -9px;
+						border-color: @brand-info transparent transparent transparent;
+						border-width: 12px 12px 0 0;
+					}
+				}
+				.avatar {
+					text-align: right;
+				}
+			}
+		}
+	}
+	.message-input {
+		width: 100%;
+		position: absolute;
+		bottom: 0; left: 0; right: 0;
+
+		input {
+			width: 100%;
+			background-color: lighten(@brand-info, 10%);
+			border: none;
+			padding: 15px 40px 15px 15px;
+			color: #fff;
+		}
+		span {
+			position: absolute;
+			color: @brand-info;
+			top: 20px; right: 15px;
+		}
+	}
+
+	&.open-conversation {
+		.chat-content {
+			transform: translateX(-250px);
+		}
+	}
+}
+
+@media (max-width: @screen-sm-min) {
+	body.chat-open {
+		overflow: hidden;
+		.wrapper {
+			padding-right: 0;
+		}
+		aside.chat {
+			transform: translateX(0);
+		}
+	}
+}

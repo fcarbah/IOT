@@ -1,0 +1,54 @@
+.page.lock {
+	.container {
+		margin: 100px auto;
+		width: 600px;
+		position: relative;
+
+		.input-bar {
+			margin: 100px 0;
+
+			.form-control {
+				background-color: darken(@brand-info, 10%);
+				border-color: transparent;
+				padding-left: 60px;
+
+				&:hover, &:focus {
+					box-shadow: none;
+				}
+			}
+			.input-group-btn {
+				.btn-info {
+					border: 1px solid darken(@brand-info, 10%);
+					background-color: darken(@brand-info, 10%);
+					box-shadow: none;
+				}
+			}
+			.present-name {
+				background-color: #fff;
+				display: block;
+				border-radius: @border-radius-base;
+				line-height: 38px;
+				height: 38px;
+				color: @gray-light;
+				padding: 0 15px;
+				font-size: 18px;
+			}
+		}
+
+		#avatar {
+			display: block;
+			position: absolute;
+			z-index: 5;
+
+			top: 140px; left: 50%;
+			margin-left: -110px;
+
+			width: 220px;
+			height: 220px;
+			
+			animation-duration: 1s;
+			animation-delay: 3s;
+			animation-iteration-count: infinite;
+		}
+	}
+}

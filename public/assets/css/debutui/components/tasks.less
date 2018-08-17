@@ -1,0 +1,128 @@
+#tasks-view {
+	.profile.widget {
+		overflow: hidden;
+		.widget-heading {
+			position: relative;
+			height: 50%;
+			background-image: url('../img/tasks_bg.jpg');
+			background-size: cover;
+			background-position: center center;
+
+			.subtitle {
+				font-weight: @font-bold;
+			}
+
+			svg {
+				width: 140px;
+				height: 140px;
+				bottom: -70px;
+				margin-left: -70px;
+			}
+		}
+		.widget-body {
+			padding: 10px 15px;
+			height: 25%;
+		}
+		.widget-footer {
+			border-top: 1px solid @panel-inner-border;
+			height: 25%;
+			padding: 8px 10px;
+
+			.person {
+				display: inline-block;
+				width: 60px; height: 60px;
+				margin: 2px 0;
+			}
+		}
+	}
+}
+
+.debut-tasks-list {
+
+	padding-top: 0;
+	padding-bottom: 0;
+
+	input {
+		border-width: 0 0 1px 0;
+		border-color: @panel-inner-border;
+		border-radius: 0;
+	}
+
+	.row {
+		border-bottom: 1px solid @panel-inner-border;
+
+		[class^="col-"], [class*="col-"] {
+			padding: 10px;
+		}
+
+		.btn-check {
+			float: left;
+			margin:8px 20px 8px 5px;
+		}
+		.title {
+			margin:0;
+		}
+		input.title {
+			width: 80%;
+			border: none;
+			padding: 0;
+			background-color: transparent;
+			font-size: 12px;
+			&:focus, &:hover {
+				box-shadow: none;
+			}
+		}
+		.author,a  {
+			color: @gray-light;
+			font-size: 10px;
+			a:hover {
+				text-decoration: underline;
+			}
+		}
+		.time {
+			color: @gray-light;
+		}
+		&:not(.done):hover {
+			background-color: @gray-lighter;
+		}
+		&.done {
+			> div { opacity: 0.2; }
+			.title {
+				text-decoration: line-through;
+			}
+		}
+	}
+}
+.project-menu {
+	li.group-name {
+		padding: 0 15px;
+		margin: 10px 0 10px 0;
+		text-transform: uppercase;
+		font-size: @font-size-h6;
+		font-family: @font-family-serif;
+		color: darken(@panel-inner-border, 10%);
+	}
+	li.divider {
+		width: 100%;
+		height: 1px;
+		background-color: @panel-inner-border;
+		margin: 5px 0;
+	}
+	li {
+		a {
+			display: block;
+			padding: 5px 15px;
+			color: @gray-light;
+			font-size: @font-size-h6;
+			font-family: @font-family-serif;
+
+			span {
+				// margin-right: 10px;
+				color: darken(@panel-inner-border, 10%);
+			}
+			&:hover {
+				background-color: lighten(@panel-inner-border, 10%);
+			}
+		}
+	}
+}

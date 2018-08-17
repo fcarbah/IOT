@@ -1,0 +1,52 @@
+<div id="page-heading">
+    <h3 class="page-title">Logs</h3>
+</div>
+
+<section class="container-fluid">
+
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            
+            <article class="panel panel-primary">
+                
+                <header class="panel-heading">
+                    Access Logs
+                    <div class="panel-options">
+                        <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="" data-toggle="minimize">
+                            <i class="fa fa-minus"></i>
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </header>
+                
+                <section class="panel-body">
+                    
+                    <div class="row">
+                    
+                        <table ng-table="accessTable" class="table ng-table-responsive">
+                        <tr ng-repeat="item in $data">
+
+                            <td data-title="'Info'">{{ item.notes }}</td>
+                            
+                            <td data-title="'Event Type'" sortable="'event_type.name'">{{ item.event_type.name }}</td>
+                            
+                            <td data-title="'Date/Time'" sortable="'created_at'">{{ item.created_at }}</td>
+                            
+                            <td data-title="'User'" sortable="'user.username'">{{ item.user.username }}</td>
+
+                        </tr>
+                    </table>
+                        
+                    </div>
+                    
+                </section>
+            </article>
+            
+        </div>
+        
+    </div>
+    
+</section>

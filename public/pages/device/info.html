@@ -1,0 +1,114 @@
+<div id="page-heading">
+    <h3 class="page-title">Device Information</h3>
+</div>
+
+
+<section class="container-fluid">
+
+    <div class="row">
+
+        <div class="publisher widget widget-lg auto">
+
+            <div class="widget-heading bg-success h2 no-margin-tb" style="background-image: url('assets/img/raspberry-pi-logo-hd.jpg')">
+                <!-- <p class="title">Webarch <strong>UI Bundle</strong><br>highly customizable<br><strong>UI elements</strong></p>
+                <a href="" ng-show="hasPermission('device.info.update')" class="btn btn-info hashtag btn-flat">Check for Updates</a> -->
+            </div>
+
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-xlg-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 text-center title">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="230px" height="230px" viewBox="0 0 230 230">
+                            <defs>
+                                <mask id="mask1" x="0" y="0" width="200" height="200">
+                                        <path fill="#fff" d="M218.5,112.667C218.5,123.333,126.666,215,116.166,215S13.832,126,13.832,112.667 s87.5-102.333,102.333-102.333S218.5,102,218.5,112.667z"></path>
+                                </mask>
+                            </defs>
+                            <g>
+                                <image x="0" y="10" width="230" height="230" xlink:href="assets/img/raspberry-pi.png" style="mask:url(#mask1);"></image>
+                                <path fill="#fff" d="M116.128,19.572c5.27,2.409,22.242,15.56,49.901,43.779c23.378,23.852,38.753,42.554,42.787,49.235
+                                        c-3.956,6.25-18.6,23.593-43.896,48.868c-25.187,25.167-42.496,39.793-48.803,43.823c-6.436-3.999-24.206-18.657-49.001-43.113
+                                        c-27.674-27.295-41.03-44.065-43.919-49.563c2.983-5.978,17.438-24.394,42.817-49.953C92.23,36.246,110.426,22.07,116.128,19.572
+                                         M116.166,10.333c-14.834,0-102.333,89-102.333,102.333C13.833,126,105.667,215,116.167,215S218.5,123.333,218.5,112.666
+                                        C218.5,102,131,10.333,116.166,10.333L116.166,10.333z" stroke-width="2" stroke="#fff"></path>
+                            </g>
+                        </svg>
+                        <br/>
+                        <h4 class="text-info">Raspberry Pi</h4>
+                        <span class="text-muted font-14"><span class="fa fa-clock-o"></span> Model: Pi3</span>
+
+                        <div class="row pad-5"></div>
+                        <div class="row text-left">
+                            <div class="list-group no-border">
+
+                                <a class="list-group-item list-group-item-heading list-group-item-success no-border-radius no-border-lr no-margin no-border-bottom"><h4>Status</h4></a>
+                                <a class="list-group-item no-border-lr">Presence
+                                    <span class="badge badge-success" ng-if="environment.presence===1">Yes</span>
+                                    <span class="badge badge-primary" ng-if="environment.presence ===0">No</span>
+                                </a>
+                                <a class="list-group-item no-border-lr">Temperature <span class="badge" ng-if="environment.temp">{{environment.temp|number:0}}&deg;F</span></a>
+                                <a class="list-group-item no-border-lr">Humidity <span class="badge badge-warning" ng-if="environment.temp">{{environment.humidity|number:0}}</span></a>
+                                <a ng-show="environment != null" class="list-group-item no-border-lr">Last Updated <span class="badge badge-primary">{{environment.created_at | toDate | date:'short'}}</span></a>
+
+                                <a class="list-group-item list-group-item-heading list-group-item-warning no-border-bottom no-border-radius no-border-lr no-margin"><h4>Alarm</h4></a>
+                                <a class="list-group-item no-border-lr">Status
+                                    <span class="badge badge-danger" ng-if="alarm.status">Active</span>
+                                    <span class="badge badge-success" ng-if="!alarm.status">Inactive</span>
+                                </a>
+                                <a ng-if="alarm.status" class="list-group-item no-border-lr">Time <span class="badge badge-primary">{{alarm.created_at | toDate | date:'short'}} - {{alarm.duration}}</span></a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xlg-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 content">
+
+                        <h4 class="">Software:</h4><br/>
+                        <p class="text-muted font-13">OS: {{system.os}} | Platform: {{system.platform}} | Software Version: {{system.version}}</p>
+                        <p class="text-muted font-13">Last Boot: {{system.lastBoot}}</p>
+                        <div class="row"></div><br/>
+
+                        <h4 class="">Hardware:</h4>
+
+                        <h5>CPU</h5>
+                        <p class="text-muted font-13">{{system.cpu.brand}} @{{system.cpu.clock}} GHz | {{system.cpu.bits}} Bits {{system.cpu.cores}} Cores</p><br/>
+
+                        <h5>RAM</h5>
+                        <p class="text-muted font-13">Size: {{system.ram}} GB</p><br/>
+
+                        <h5>Disk</h5>
+                        <p class="text-muted font-13">
+
+                            Total Space: {{system.disk.total}} GB | Used Space: {{system.disk.used}} GB | Free Space: {{system.disk.free}} GB
+                            <div class="col-md-5 col-sm-12 no-padding">
+                                <div class="progress" style="height:16px;">
+                                    <div class="progress-bar progress-bar-striped" ng-class="utilization(system.disk.percent,'progress-bar-')" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{system.disk.percent}}%;">
+                                        {{system.disk.percent}}%
+                                        <p class="sr-only">{{system.disk.percent}}% Used</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- device location -->
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Device Location <span class="pull-right badge badge-primary">Last Updated: {{location.lastUpdate | toDate | date:'short'}}</span></div>
+            <div class="panel-body">
+                <ui-gmap-google-map center='currentMap.center' zoom='currentMap.zoom' options="currentMap.options">
+                    <ui-gmap-marker idKey='1' coords='marker.coords' options='marker.options'></ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
+        </div>
+    </div>
+
+</section>

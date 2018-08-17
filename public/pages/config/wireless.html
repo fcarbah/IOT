@@ -1,0 +1,78 @@
+<div id="page-heading">
+    <h3 class="page-title">Wireless Configuration</h3>
+</div>
+
+<section class="container-fluid">
+
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            
+            <article class="panel panel-primary">
+                
+                <header class="panel-heading">
+                    Wireless Networks
+                    <div class="panel-options">
+                        <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="" data-toggle="minimize">
+                            <i class="fa fa-minus"></i>
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </header>
+                
+                <section class="panel-body">
+                    
+                    <div class="row pad-10">
+                        <button type="button" class="btn btn-success icon-standalone pull-right" ng-click="toggleModal(0,'open')" ng-show="hasPermission('configuration.wireless.add')">
+                            <i class="fa fa-plus"></i> <span>Add Wireless Network</span>
+                        </button><br/>
+                    </div>
+                    
+                    <div class="row pad-10p font-32 grey-text text-lighten-1 text-center" ng-if="wirelessNetworks.length <1">
+                        No Wireless Networks
+                    </div>
+                    
+                    <div class="row">
+                    
+                        <table ng-table="wirelessTable" class="table ng-table-responsive">
+                        <tr ng-repeat="item in $data">
+
+                            <td data-title="'SSID'" sortable="'ssid'">{{ item.ssid }}</td>
+
+                            <td data-title="'Encryption Type'" sortable="'authType'">{{ item.authType }}</td>
+
+                            <td data-title="'Auto Connect'">
+                                <label class="btn-check">
+                                    <input type="checkbox" ng-checked="item.autoConnect" readonly disabled>
+                                    <span></span>
+                                </label>
+                            </td>
+
+                            <td data-title="'Options'">
+                                <div class="btn-group">
+                                    <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                    <ul role="menu" class="dropdown-menu">
+                                            <li role="presentation" class="dropdown-header">Actions</li>
+                                            <li><a href="" ng-show="hasPermission('configuration.wireless.edit')" ng-click="toggleEditForm(item)">Edit</a></li>
+                                            <li><a href="" ng-show="passwordRequired(item) && hasPermission('configuration.wireless.edit')" ng-click="togglePassForm(item)">Change Password</a></li>
+                                            <li role="presentation" class="divider"></li>
+<!--                                            <li role="presentation" class="dropdown-header">Other</li>-->
+                                            <li><a href="" ng-show="hasPermission('configuration.wireless.delete')" ng-click="toggleDeleteForm(item)">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                        
+                    </div>
+                    
+                </section>
+            </article>
+            
+        </div>
+        
+    </div>
+    
+</section>

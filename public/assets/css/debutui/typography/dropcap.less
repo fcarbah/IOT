@@ -1,0 +1,38 @@
+.dropcap-bg (@color) {
+	&:first-letter {
+		color: #fff;
+		background-color: @color;
+	}
+}
+
+[class^="dropcap-"],[class*="dropcap-"] {
+	&:first-letter {
+		float: left;
+		font-size: 30px;
+		font-weight: 500;
+		border-radius: @border-radius-base;
+		line-height: 30px;
+		padding: 10px 20px;
+		margin: 0 10px 5px 0;
+		background-color: transparent;
+	}
+}
+.dropcap-default {
+	.dropcap-bg(#fff);
+	&:first-letter { color: @text-color; }
+}
+.dropcap-success {
+	.dropcap-bg(@brand-success);
+}
+.dropcap-primary {
+	.dropcap-bg(@brand-primary);
+}
+.dropcap-info {
+	.dropcap-bg(@brand-info);
+}
+.dropcap-danger {
+	.dropcap-bg(@brand-danger);
+}
+.dropcap-warning {
+	.dropcap-bg(@brand-warning);
+}

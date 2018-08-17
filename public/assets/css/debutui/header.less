@@ -1,0 +1,29 @@
+#page-heading {
+	background-color: #fff;
+	padding: 0 20px 0 20px;
+	border-bottom: 1px solid #E7E7E7;
+	margin-bottom: 15px;
+	> .page-title {
+		margin:0;
+		padding: 10px 0;
+		font-weight: @font-light;
+		color: #959ea5;
+	}
+}
+
+.wrapper > nav.navbar.navbar-default {
+	background-color: @body-bg;
+}
+
+@media (max-width: @screen-sm-min) {
+	.wrapper > nav.navbar.navbar-default {
+		position: fixed; 
+		top: 0; left: 0;
+		width: 100%;
+		box-shadow: 0 1px 1px 0 rgba(0,0,0, .2);
+		background-color: #fff;
+	}
+	#page-heading {
+		margin-top: 50px;
+	}
+}

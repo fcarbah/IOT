@@ -1,0 +1,95 @@
+
+<div id="page-heading">
+    <h3 class="page-title">Access Control Configuration</h3>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Enable/Disable Access Control</div>
+    <div class="panel-body">
+        
+        <label class="btn-check">
+            <input type="checkbox" ng-model="config.enableIpFilter" ng-disabled="!hasPermission('security.acl.edit')" ng-checked="config.enableIpFilter" ng-click="saveConfig()">
+            <span>Enable IP Filtering</span>
+        </label>
+        
+        <label class="btn-check">
+            <input type="checkbox" disabled="true" ng-model="config.enableLocalNet" ng-checked="config.enableLocalNet">
+            <span>Allow Local Network</span>
+        </label>
+        
+    </div>
+    
+</div>
+
+<section class="container-fluid">
+
+    <div class="row">
+        
+        <div class="col-md-12">
+            <article class="panel panel-primary" >
+                <header class="panel-heading">
+                    IP Filters
+                    <div class="panel-options">
+                            <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="" data-toggle="minimize">
+                                    <i class="fa fa-minus"></i>
+                                    <i class="fa fa-plus"></i>
+                            </a>
+                    </div>
+                </header>
+
+                <section class="panel-body">
+                    
+                    <div class="row pad-10">
+                        <button type="button" class="pull-right btn btn-info icon-standalone pull-right" ng-click="toggleAclForm();toggleModal(0,'open')" ng-show="hasPermission('security.acl.add')">
+                            <i class="fa fa-plus"></i> <span>Add Ip Filter</span>
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <table ng-table="ipFilterTable" class="table ng-table-responsive">
+
+                        <tbody ng-repeat="group in $groups">
+
+                            <tr class="ng-table-group">
+                                <td colspan="{{$columns.length}}">
+                                    <a href="" ng-click="group.$hideRows = !group.$hideRows">
+                                        <h5 class="inline">{{ group.value }} 
+                                            <span class="fa" ng-class="{ 'fa-chevron-right': group.$hideRows, 'fa-chevron-down': !group.$hideRows }"></span>
+                                        </h5>
+                                    </a>
+                                </td>
+
+                            </tr>
+
+                            <tr ng-hide="group.$hideRows" ng-repeat="item in group.data">
+
+                                <td data-title="'Start IP'" sortable="'startIp'">{{ item.startIp }}</td>
+
+                                <td data-title="'End IP'" sortable="'endIp'">{{ item.endIp }}</td>
+
+                                <td data-title="'Options'">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li><a href="" ng-show="hasPermission('security.acl.edit')" ng-click="toggleEditForm(item)">Edit</a></li>
+                                            <li><a href="" ng-show="hasPermission('security.acl.delete')" ng-click="toggleDeleteForm(item)">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    </div>    
+                    
+                </section>
+
+            </article>
+        </div>
+        
+    </div>
+    
+</section>

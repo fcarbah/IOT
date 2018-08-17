@@ -1,0 +1,32 @@
+
+<div class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="toggleModal(0);$hide()">&times;</button>
+                    <h4 class="modal-title">Generate Mobile API Key</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="row" role="form" name="addForm" ng-submit="addKey()">
+
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': addForm.name.$invalid && addForm.name.$touched, 'has-success': addForm.name.$valid }">
+                            <label>Key Name </label>
+                            <input type="text" class="form-control" name="name" required ng-model="key.name">
+
+                            <div ng-messages="addForm.name.$error" ng-if="addForm.name.$touched">
+                                <p class="error text-danger" ng-message="required">Key Name is required</p>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default btn-flat" ng-click="toggleModal(0);$hide()"><span class="fa fa-remove"></span> Cancel</button>
+                    <button class="btn btn-success pull-right btn-flat" ng-click="addKey()"><span class="fa fa-check"></span> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

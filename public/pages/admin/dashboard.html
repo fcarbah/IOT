@@ -1,0 +1,88 @@
+<div id="page-heading">
+	<h3 class="page-title">Dashboard</3>
+</div>
+
+<section class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="col-md-6 no-padding">
+                <div class="widget info-box">
+                    <span class="icon icon-spoon icon-6x"></span>
+                    <div class="widget-body">
+                        <span class="info-text bolder text-blocked">Current Temperature
+                            <span ng-if="environment.temp" class="font-64">{{environment.temp | number :0}}&deg;F</span>
+                        </span>
+                        <span class="subinfo-text text-blocked font-14">Humidity
+                            <span class="badge badge-warning font-13">{{environment.humidity | number:0}}</span>
+                        </span>
+                        <p class="pad-5"></p>
+                        <span class="subinfo-text text-blocked font-14" >Presence
+                            <span ng-if="environment.presence === 1" class="badge badge-success font-13">Yes</span>
+                            <span ng-if="environment.presence === 0 || environment.presence===undefined" class="badge badge-primary font-13">No</span>
+                        </span>
+											  <span class="subinfo-text text-blocked font-14" > Last Updated: {{environment.created_at | toDate| date:'short'}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 no-padding">
+                <div class="widget info-box">
+                    <span class="icon icon-flag icon-6x"></span>
+                    <div class="widget-body">
+                        <span class="info-text bolder text-blocked">Alarm
+                            <span ng-if="alarm.status" class="badge font-16">Active</span>
+                            <span ng-if="alarm == null || !alarm.status" class="badge badge-success font-16">InActive</span>
+                        </span>
+                        <span class="subinfo-text text-blocked" ng-if="alarm.status">{{alarm.created_at | toDate| date:'short'}} - {{alarm.duration}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12" >
+            <article class="panel panel-default">
+                <header class="panel-heading">Temperature Levels</header>
+                <section class="panel-body">
+					<c3-simple id="chart" class="chart" config="tempChart"></c3-simple>
+                    <!-- <div ui-charts="tempChart" id="tlchart" ng-if="loadChart" class="chart"></div> -->
+                </section>
+            </article>
+        </div>
+
+    </div>
+
+<!--    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" >
+            <article class="panel panel-default">
+                <header class="panel-heading">Temperature Levels</header>
+                <section class="panel-body height-400">
+                    <canvas id="line" class="chart chart-line" chart-data="data" chart-colors="colors" chart-dataset-override="dataset" height="400px"
+                    chart-labels="labels" chart-series="series" chart-options="options" chart-click="onClick">
+                </canvas>
+                </section>
+            </article>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <!-- device location -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Device Location <span class="pull-right badge badge-primary">Last Updated: {{location.lastUpdate | toDate | date:'short'}}</span></div>
+                <div class="panel-body">
+                    <ui-gmap-google-map center='currentMap.center' zoom='currentMap.zoom' options="currentMap.options">
+                        <ui-gmap-marker idKey='1' coords='marker.coords' options='marker.options'></ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

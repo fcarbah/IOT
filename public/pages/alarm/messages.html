@@ -1,0 +1,81 @@
+<main role="main" id="mailbox">
+    <div id="page-heading">
+        <h3 class="page-title"><span class="icon-note1"></span> Notifications</h3>
+    </div>
+
+    <section class="container-fluid">
+        <div class="row">
+            <div ng-class="{ 'col-xlg-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-md hidden-sm hidden-xs': expanded, 'col-xlg-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 hidden-md hidden-sm hidden-xs': !expanded  }">
+                <div class="panel panel-default">
+                    <div class="panel-heading mail-list-options clearfix text-center">
+                            <label class="btn-check pull-left">
+                                    <input type="checkbox" ng-click="toggleAll()" ng-value="true">
+                                    <span></span>
+                            </label>
+                            <div class="btn-group pull-right">
+                                    <a href class="btn btn-default btn-xs"><span class="fa fa-angle-left fa-fw"></span></a>
+                                    <a href class="btn btn-default btn-xs"><span class="fa fa-angle-right fa-fw"></span></a>
+                            </div>
+                            <div class="pull-right mail-pagi">
+                                    <small class="bolder">1 - 50</small>
+                                    <small>from</small>
+                                    <small class="bolder">2400</small>
+                                    <small>messages</small>
+                            </div>
+                    </div>
+                    <div class="panel-body no-padding">
+                        
+                        <div class="row pad-10p font-32 grey-text text-lighten-1 text-center" ng-if="alarmMessages.length <1">
+                            No Messages
+                        </div>
+                        
+                        <ul class="mail-list">
+<!--                            <li ng-repeat="mail in mails" ui-sref-active="active">
+                                <div class="time-fav">
+                                    <a href class="fav text-center"><span class="icon-star icon-lg"></span></a>
+                                    <span class="text-center">{{ mail.date | date:'dd.MM' }}</span>
+                                </div>
+                                <div class="attachment hidden-xs">
+                                    <span class="fa fa-paperclip fa-fw fa-lg fa-rotate-90" ng-if="mail.files"></span>
+                                </div>
+                                <a href ui-sref="app.admin.alarm.messages.message({ id: mail.id })" class="title">
+                                    <h6>{{ mail.title }} <span ng-if="mail.tag" class="label label-{{ mail.tag.type }}">{{ mail.tag.name }}</span> </h6>
+                                    <small class="short">{{ mail.content | stripTags | limitTo:short }}...</small>
+                                </a>
+                            </li>-->
+                            
+                            <li ng-repeat="mail in alarmMessages" ui-sref-active="active">
+                                <div class="time-fav">
+                                    <a href class="fav text-center"><span class="icon-star icon-lg"></span></a>
+                                    <span class="text-center">{{ mail.created_at | date:'dd.MM' }}</span>
+                                </div>
+                                <div class="attachment hidden-xs">
+                                    <span class="fa fa-paperclip fa-fw fa-lg fa-rotate-90" ng-if="mail.files"></span>
+                                </div>
+                                <a href ui-sref="app.admin.alarm.messages.message({ id: mail.id })" class="title">
+                                    <h6>{{ mail.title }} <span ng-if="mail.tag" class="label label-{{ mail.tag.type }}">{{ mail.tag.name }}</span> </h6>
+                                    <small class="short">{{ mail.message | stripTags | limitTo:short }}...</small>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <div class="btn-group pull-right">
+                            <a href class="btn btn-default btn-xs"><span class="fa fa-angle-left fa-fw"></span></a>
+                            <a href class="btn btn-default btn-xs"><span class="fa fa-angle-right fa-fw"></span></a>
+                        </div>
+                        <div class="pull-right mail-pagi">
+                            <small class="bolder">1 - 50</small>
+                            <small>from</small>
+                            <small class="bolder">2400</small>
+                            <small>messages</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ui-view name="subcontent"></ui-view>
+        </div>
+    </section>
+    
+</main>

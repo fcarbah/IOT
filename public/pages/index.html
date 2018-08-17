@@ -1,0 +1,51 @@
+<main class="page login">
+    <section class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <h1 class="text-center">
+                            <img src="assets/img/logo.png" alt="Logotype">
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading text-center">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form name="loginForm">
+                        <div class="form-group" ng-class="{ 'has-error': loginForm.username.$invalid && loginForm.username.$touched, 'has-success': loginForm.username.$valid }">
+                            <div class="input-group plain-addon">
+                                <div class="input-group-addon"><span class="fa fa-user fa-fw"></span></div>
+                                <input type="text" name="username" class="form-control" placeholder="Enter Username" ng-model="credentials.username" required>
+                            </div>
+                            <div ng-messages="loginForm.username.$error" ng-if="loginForm.username.$touched">
+                                <p class="error text-danger" ng-message="required">Username is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': loginForm.password.$invalid && loginForm.password.$touched, 'has-success': loginForm.password.$valid }">
+                            <div class="input-group plain-addon">
+                                <div class="input-group-addon"><span class="fa fa-unlock-alt fa-fw"></span></div>
+                                <input type="password" name="password" class="form-control" placeholder="Enter password" ng-model="credentials.password" required>
+                            </div>
+                            <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched">
+                                <p class="error text-danger" ng-message="required">Password is required.</p>
+                            </div>
+                        </div>
+<!--                        <button type="button" class="btn btn-link">Forgot You password?</button>-->
+                            <button type="submit" class="btn btn-success pull-right" ng-click="login()">Log me in!</button>
+                        </form>
+                    </div>
+                    <div class="panel-footer">
+                        
+<!--                        <span class="text-center">Don't have an account yet? <a href ui-sref="home.register" class="text-success"><strong>Sing up!</strong></a></span>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>		
+</main>
+

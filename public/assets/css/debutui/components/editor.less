@@ -1,0 +1,38 @@
+.editor {
+	border-radius: @border-radius-base;
+	border: 1px solid @panel-inner-border;
+
+	&.borderless {
+		border: none;
+	}
+
+	.editor-toolbar {
+		border-bottom: 1px solid @panel-inner-border;
+		padding: 5px 0;
+		background-color: lighten(@brand-blocked, 70%);
+
+		.btn-group:not(:last-child) {
+			border-right: 1px solid @panel-inner-border;
+		}
+		.btn {
+			color: @brand-blocked;
+			border-radius: @border-radius-base !important;
+			padding: 4px 8px;
+			&.active {
+				background-color: @panel-inner-border;
+			}
+		}
+	}
+	.editor-content {
+		overflow: hidden;
+		height: 200px;
+		.editor-input {
+			overflow-x: hidden;
+			overflow-y: auto;
+			width: 100%;
+			height: inherit;
+			border: none;
+			padding: 15px;
+		}
+	}
+}

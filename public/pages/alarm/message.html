@@ -1,0 +1,35 @@
+<div class="col-xlg-8 col-lg-7 col-md-12 col-sm-12">
+    <div class="panel panel-default mail-content">
+        <div class="panel-heading clearfix">
+            <div class="dropcap-info pull-left">{{ mail.user.username | limitTo: 1 }}</div>
+            <p class="pull-right">
+                    <a href><span class="icon-flag text-muted"></span></a>
+                    <a href><span class="icon-link text-muted"></span></a>
+                    <a href><span class="icon-resize text-muted"></span></a>
+            </p>
+            <span class="open-title">{{ mail.title }}</span>
+            <div class="open-date">{{ mail.date | date: 'dd MMMM yyyy hh:mm'}}</div>
+            <div class="open-title-info">
+                <a href class="text-muted">{{ mail.user.username }}</a> 
+<!--                to <a href class="text-success">{{ mail.to }}</a>-->
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="open-content">
+                <div class="form-group" ng-bind-html="mail.message"></div>
+
+                <hr ng-if="mail.files">
+                <h5 ng-if="mail.files"><span class="fa fa-paperclip fa-fw fa-lg"></span> Attachments</h5>
+                <ul class="list-unstyled row vertical-margin" ng-if="mail.files">
+                        <li ng-repeat="file in mail.files" class="col-xlg-2 col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <a href class="thumbnail">
+                                        <img src="assets/img/placeholder.svg" alt="">
+                                </a>
+                                <p class="bolder">{{ file.name }}</p>
+                        </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

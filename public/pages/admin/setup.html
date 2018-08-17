@@ -1,0 +1,143 @@
+<!-- <div id="page-heading">
+	<h3 class="page-title">Initial Setup</3>
+</div> -->
+
+<main class="page">
+    <section class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <h1 class="text-center white-text">
+                        <!-- <img src="assets/img/logo3.svg" alt="Logotype"> -->
+                        Device Initial Setup
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+	    <div class="row">
+
+	        <div class="col-md-12">
+
+	        	<div class="alert alert-info">Initial Setup must be completed in order to continue using the App</div>
+
+
+	        	<div class="panel panel-default" ui-form-wizard>
+					<div class="panel-heading">Owners Information</div>
+					<div class="form-wizard">
+						<ul class="tabs">
+							<li><button data-step="1">Owners Information</button></li>
+							<li><button data-step="2">Temperature Configuration</button></li>
+							<li><button data-step="3">Notification Settings</button></li>
+						</ul>
+					</div>
+					<div class="panel-body form-vertical">
+
+						<!-- owners info -->
+						<div class="wizard-pane active">
+
+							<form name="contactForm" novalidate ng-submit="contactForm.$valid && $next()">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+
+			                        <div class="form-group" ng-class="{ 'has-error': contactForm.name.$invalid && contactForm.name.$touched, 'has-success': contactForm.name.$valid }">
+			                            <label class="control-label"><span>Name</span></label>
+			                            <input type="text" class="form-control" placeholder="Full Name" name="name" ng-model="newContact.name" required>
+			                        </div>
+
+			                        <div class="form-group" ng-class="{ 'has-error': contactForm.phone.$invalid && contactForm.phone.$touched, 'has-success': contactForm.phone.$valid }">
+			                            <label class="control-label"><span>Phone</span></label>
+			                            <input type="text" class="form-control" ui-mask="9?9?9?-9?9?9?-9?999" ng-pattern="/\d{3}|\d{7}|\d{10}/" name="phone" ng-model="newContact.phone" required>
+			                            <div ng-messages="contactForm.phonep.$error" ng-if="contactForm.phone.$touched">
+			                                <p class="error text-danger" ng-show="contactForm.phone.$error.pattern">Invalid Phone Number</p>
+			                            </div>
+			                        </div>
+
+			                        <div class="form-group" ng-class="{ 'has-error': contactForm.email.$invalid && contactForm.email.$touched, 'has-success': contactForm.email.$valid }">
+			                            <label class="control-label"><span>Email</span></label>
+			                            <input type="email" class="form-control" placeholder="example@test.com" name="email" ng-model="newContact.email" required>
+			                        </div>
+
+			                    </div>
+								<div class="row"><hr></div>
+								<!-- <button type="button" class="btn btn-default">Prev step</button> -->
+								<button type="submit" class="btn btn-primary pull-right">NEXT: Temperature Configuration</button>
+							</form>
+						</div>
+
+						<!-- temp configuration -->
+						<div class="wizard-pane">
+
+							<form name="tempForm" novalidate ng-submit="$next()">
+								<div class="form-group">
+			                        <label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">Lower Threshold (&deg;F)</label>
+			                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+			                            <div slider ng-model="temp.lower" floor="{{defTemp.min}}" ceiling="{{defTemp.lower}}" step="1" precision="1"></div>
+			                        </div>
+			                    </div>
+
+			                     <div class="form-group">
+			                        <label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">Upper Threshold (&deg;F)</label>
+			                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+			                            <div slider ng-model="temp.upper" floor="{{defTemp.upper}}" ceiling="{{defTemp.max}}" step="1" precision="1"></div>
+			                        </div>
+			                    </div>
+
+								<div class="row"><hr></div><br/>
+								<button type="button" class="btn btn-primary" ng-click="$prev()">PREV: Owners Info</button>
+								<button type="submit" class="btn btn-primary pull-right">NEXT: Notification Settings</button>
+
+							</form>
+
+						</div>
+
+						<!-- notif settings -->
+						<div class="wizard-pane">
+
+							<form name="notifForm" novalidate ng-submit="submit()">
+								
+								<div class="form-group">
+									<h5>Notify Contacts</h5>
+	                                <dl>
+
+	                                    <dt ng-repeat="item in availableNotifs.contacts">
+	                                        <label class="btn-radio">
+	                                            <input type="radio" name="contact" value="{{item.id}}" ng-model="defNotif.contacts.id" ng-click="notifChange(1)"
+	                                                ng-selected="defNotif.contacts.value===item.value" ng-disabled="!hasPermission('configuration.notifications.edit')">
+	                                            <span>{{item.value}}</span>
+	                                        </label>
+	                                    </dt>
+
+	                                </dl>
+                                </div>
+
+                                <div class="form-group">
+                                	<h5>Notify Emergency Contacts</h5>
+                                    <dl>
+                                        <dt ng-repeat="item in availableNotifs.emergency">
+                                            <label class="btn-radio">
+                                                <input type="radio" name="emergency" value="{{item.id}}" ng-model="defNotif.emergency.id" ng-click="notifChange(2)"
+                                                    ng-selected="defNotif.emergency.value===item.value" ng-disabled="!hasPermission('configuration.notifications.edit')">
+                                                <span>{{item.value}}</span>
+                                            </label>
+                                        </dt>
+                                    </dl>
+                                </div>
+
+								<div class="row"><hr></div><br/>
+								<button type="button" class="btn btn-primary" ng-click="$prev()">PREV: Temperature Config</button>
+								<button type="submit" class="btn btn-success pull-right">FINISH</button>
+
+							</form>
+
+						</div>
+
+					</div>
+				</div>
+
+	    	</div>
+
+		</div>
+
+	</section>
+
+</main>

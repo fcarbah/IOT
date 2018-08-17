@@ -1,0 +1,90 @@
+
+<div id="page-heading">
+    <h3 class="page-title">Contacts Configuration</h3>
+</div>
+
+<section class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <article class="panel panel-primary" >
+                <header class="panel-heading">
+                    All Contacts
+                    <div class="panel-options">
+                            <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="" data-toggle="minimize">
+                                <i class="fa fa-minus"></i>
+                                <i class="fa fa-plus"></i>
+                            </a>
+                    </div>
+                </header>
+
+                <section class="panel-body">
+                    
+                    <div class="row pad-10">
+                        <button type="button" class="btn btn-info icon-standalone pull-right" ng-click="toggleModal(0,'open')" ng-show="hasPermission('configuration.contacts.add')" >
+                            <i class="fa fa-plus"></i> <span>Add Contact</span>
+                        </button>
+                    </div>
+                    
+                    <div class="row pad-10p font-32 grey-text text-lighten-1 text-center" ng-if="contacts.length <1">
+                        No Contacts
+                    </div>
+                        
+                    <div class="row">
+                        
+                        <table ng-table="contactsTable" class="table ng-table-responsive">
+
+                        <tbody ng-repeat="group in $groups">
+
+                            <tr class="ng-table-group">
+                                <td colspan="{{$columns.length}}">
+                                    <a href="" ng-click="group.$hideRows = !group.$hideRows">
+                                        <h5 class="inline">{{ group.value }} 
+                                            <span class="fa" ng-class="{ 'fa-chevron-right': group.$hideRows, 'fa-chevron-down': !group.$hideRows }"></span>
+                                        </h5>
+                                    </a>
+                                </td>
+
+                            </tr>
+
+                            <tr ng-hide="group.$hideRows" ng-repeat="item in group.data">
+
+                                <td data-title="'Name'" sortable="'name'">{{ item.name }}</td>
+
+                                <td data-title="'Phone'" sortable="'phone'">{{ item.phone }}</td>
+                                
+                                <td data-title="'Email'" sortable="'email'">{{ item.email }}</td>
+
+                                <td data-title="'Alert Types'">{{ item.alertTypes.join(',') }}</td>
+
+                                <td data-title="'Options'">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li role="presentation" class="dropdown-header">Actions</li>
+                                            <li><a href="" ng-show="item.canEdit" ng-show="hasPermission('configuration.contacts.edit')" ng-click="toggleEditForm(item)">Edit</a></li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li><a href="" ng-show="item.canEdit && hasPermission('configuration.contacts.edit')" ng-click="toggleDeleteForm(item)">Delete</a></li>
+                                        </ul>                                      
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    </div>
+
+                </section>
+
+            </article>
+
+        </div>
+
+    </div>
+    
+</section>

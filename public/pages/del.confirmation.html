@@ -1,0 +1,19 @@
+
+
+<div class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">{{delConfirm.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-danger" ng-bind-html="delConfirm.message|html"></h5>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger pull-right btn-flat margin-5" ng-click="delConfirm.deleteHandler()"><span class="fa fa-check"></span> Yes</button>
+                <button class="btn btn-primary btn-flat pull-right margin-5" ng-click="delConfirm.cancelHandler()"><span class="fa fa-remove"></span> No</button>
+            </div>
+        </div>
+    </div>
+</div>

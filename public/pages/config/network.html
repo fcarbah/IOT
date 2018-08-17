@@ -1,0 +1,114 @@
+<div id="page-heading">
+    <h3 class="page-title">Network Configuration</h3>
+</div>
+
+<div class="panel panel-primary">
+    
+    <div class="panel-heading">Network Mode</div>
+    
+    <div class="panel-body">
+        <label class="btn-radio" ng-repeat="item in modes">
+            <input type="radio" name="ipconfigtype" value="{{item.id}}" ng-model="mode" ng-selected="mode.toString() == item.id"
+                ng-disabled="!hasPermission('configuration.network.edit')" ng-click="toggleIpConfigForm(item)">
+            <span>{{item.value}}</span>
+        </label>
+    </div>
+
+</div>
+
+<section class="container-fluid">
+    
+    <div class="row">
+        
+        <div class="col-md-6">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">IP Configuration
+                    <button type="button" class="btn btn-primary pull-right icon-standalone" ng-click="toggleConfigForm()" ng-show="showConfigEditBtn && hasPermission('configuration.network.edit')">
+                        <i class="fa fa-pencil"></i> <span>Edit</span>
+                    </button>
+                </div>
+                
+                <div class="panel-body">
+                    <dl ng-show="mode===2">
+                        <dt>IP Address: {{ipInfo.ip}}</dt><dd><br/></dd>
+                        <dt>SubnetMask: {{ipInfo.subnet}}</dt><dd><br/></dd>
+                        <dt>Gateway: {{ipInfo.gateway}}</dt><dd><br/></dd>
+                        <dt>DNS Server: {{ipInfo.dns}}</dt><dd><br/></dd>
+                        <dt>DNS Server 2: {{ipInfo.dns2}}</dt><dd><br/></dd>
+                    </dl>
+                    <dl ng-show="mode===1">
+                        <dt>IP Address: {{dynamicIp.ip}}</dt><dd><br/></dd>
+                        <dt>SubnetMask: {{dynamicIp.subnet}}</dt><dd><br/></dd>
+                        <dt>Gateway: {{dynamicIp.gateway}}</dt><dd><br/></dd>
+                        <dt>DNS Server: {{dynamicIp.dns}}</dt><dd><br/></dd>
+                        <dt>DNS Server 2: {{dynamicIp.dns2}}</dt><dd><br/></dd>
+                    </dl>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <article class="panel panel-primary" ng-show="showIpConfigForm && hasPermission('configuration.network.edit')">
+                <header class="panel-heading">Static IP Configuration</header>
+                <section class="panel-body form-horizontal" name="ipform">
+                    <form name="ipform">
+                        <div class="form-group" ng-class="{ 'has-error': ipForm.ip.$invalid && ipForm.ip.$touched, 'has-success': ipForm.ip.$valid }">
+                            <label class="col-lg-3 col-md-12 col-sm-3 control-label hidden-md">IP Address</label>
+                            <div class="col-lg-9 col-md-12 col-sm-9">
+                                <input type="text" name="ip" class="form-control ipv4" ipmask="ipv4" ng-model="newIpInfo.ip" ng-pattern="ipPattern" >
+                            </div>
+                            <div ng-messages="ipForm.ip.$error" ng-if="ipForm.ip.$touched">
+                                <p class="error text-danger" ng-show="ipForm.ip.$error.pattern">Invalid IP Address</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': ipForm.subnet.$invalid && ipForm.subnet.$touched, 'has-success': ipForm.subnet.$valid }">
+                            <label class="col-lg-3 col-md-12 col-sm-3 control-label hidden-md">Subnet Mask</label>
+                            <div class="col-lg-9 col-md-12 col-sm-9">
+                                <input type="text" name="subnet" class="form-control ipv4" ipmask="ipv4" ng-model="newIpInfo.subnet" ng-pattern="ipPattern">
+                            </div>
+                            <div ng-messages="ipForm.subnet.$error" ng-if="ipForm.subnet.$touched">
+                                <p class="error text-danger" ng-show="ipForm.subnet.$error.pattern">Invalid Subnet Mask</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': ipForm.gw.$invalid && ipForm.gw.$touched, 'has-success': ipForm.gw.$valid }">
+                            <label class="col-lg-3 col-md-12 col-sm-3 control-label hidden-md">Default Gateway</label>
+                            <div class="col-lg-9 col-md-12 col-sm-9">
+                                <input type="text" name="gw" class="form-control ipv4" ipmask="ipv4" ng-model="newIpInfo.gateway" ng-pattern="ipPattern">
+                            </div>
+                            <div ng-messages="ipForm.gw.$error" ng-if="ipForm.gw.$touched">
+                                <p class="error text-danger" ng-show="ipForm.gw.$error.pattern">Invalid Gateway Address</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': ipForm.dns.$invalid && ipForm.dns.$touched, 'has-success': ipForm.dns.$valid }">
+                            <label class="col-lg-3 col-md-12 col-sm-3 control-label hidden-md">DNS Server 1</label>
+                            <div class="col-lg-9 col-md-12 col-sm-9">
+                                <input type="text" name="dns" class="form-control ipv4" ipmask="ipv4" ng-model="newIpInfo.dns" ng-pattern="ipPattern">
+                            </div>
+                            <div ng-messages="ipForm.dns.$error" ng-if="ipForm.dns.$touched">
+                                <p class="error text-danger" ng-show="ipForm.dns.$error.pattern">Invalid DNS Server address</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': ipForm.dns2.$invalid && ipForm.dns2.$touched, 'has-success': ipForm.dns2.$valid }">
+                            <label class="col-lg-3 col-md-12 col-sm-3 control-label hidden-md">DNS Server 2</label>
+                            <div class="col-lg-9 col-md-12 col-sm-9">
+                                <input type="text" name="dns2" class="form-control" ipmask="ipv4" ng-model="newIpInfo.dns2" ng-pattern="ipOptional">
+                            </div>
+                            <div ng-messages="ipForm.dns2.$error" ng-if="ipForm.dns2.$touched">
+                                <p class="error text-danger" ng-show="ipForm.dns2.$error.pattern">Invalid DNS Server Address</p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <footer class="panel-footer">
+                    <button class="btn btn-default" ng-click="toggleConfigForm()"><span class="fa fa-remove"></span> Cancel</button>
+                    <button type="button" class="btn btn-success pull-right" ng-click="saveIpConfig()"><span class="fa fa-check"></span> Save</button>
+                </footer>
+            </article>
+        </div>
+        
+    </div>
+    
+</section>

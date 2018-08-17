@@ -1,0 +1,62 @@
+// radio buttons
+
+@radio_size: 14px;
+
+.btn-radio {
+	display: block;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	
+	input[type="radio"] { display: none; }
+	input[type="radio"] + span {
+		cursor: pointer;
+		position: relative;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			position: relative;
+			vertical-align: bottom;
+
+			width: @radio_size + 2px;
+			height: @radio_size + 2px;
+			
+			background-color: transparent;
+			border-radius: 50%;
+			
+			border:1px solid @panel-inner-border;
+			margin-right: 10px;
+
+			transition: all .1s ease-out;
+		}
+		&:after {
+			content: '';
+			display: block;
+			visibility: hidden;
+			
+			position: absolute;
+			top: 10px; left: 10px;
+
+			width: 0; height: 0;
+
+			background-color: @brand-success;
+			border-radius: 50%;
+
+			transition: all .1s ease-out;
+		}
+	}
+	&:hover input[type="radio"]:not(:disabled) + span:before {
+		box-shadow: 0 0 6px 0 @brand-success;
+		border-color: @brand-success;
+	}
+	> input[type="radio"]:checked:not(:disabled) + span:after {
+		width: @radio_size - 4px;
+		height: @radio_size - 4px;
+		top: 4px; left: 3px;
+		visibility: visible;
+	}
+	> input[type="radio"]:disabled + span {
+		opacity: 0.6;
+		cursor: no-drop !important;
+	}
+}

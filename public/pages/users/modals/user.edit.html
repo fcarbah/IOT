@@ -1,0 +1,47 @@
+
+<div class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="toggleModal(1);$hide()">&times;</button>
+                <h4 class="modal-title">Editing User "{{editUser.username}}"</h4>
+            </div>
+            <div class="modal-body">
+                
+                <form name="editForm">
+                        
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 form-group" ng-class="{ 'has-error': editForm.name.$invalid && editForm.name.$touched, 'has-success': editForm.name.$valid }">
+                            <label>Username</label>
+                            <div class="input-group form-group" >
+                                <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+                                <input type="text" class="form-control" placeholder="Username" name="name" ng-model="editUser.username" required ng-pattern="/^\w+$/" ng-disabled="!editUser.canEdit">
+                            </div>
+                            <div ng-messages="editForm.name.$error" ng-if="editForm.name.$touched">
+                                <p class="error text-danger" ng-message="required">Username is required</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 form-group" ng-class="{ 'has-error': editForm.role.$invalid  && editForm.role.$touched, 'has-success': editForm.role.$valid }">
+                            <label>User Group</label>
+                            <div class="form-group">
+                                <select class="form-control" ng-model="editUser.role_id" name="role" required ng-disabled="!editUser.canEdit" >
+                                    <option value="">Select User Role</option>
+                                    <option ng-repeat="item in userRoles" value="{{item.id}}" ng-selected="editUser.role_id==item.id">{{item.name}}</option>
+                                </select>
+                            </div>
+                            <div ng-messages="editForm.role.$error" ng-if="editForm.role.$touched">
+                                <p class="error text-danger" ng-message="required">User Role is required</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-flat" ng-click="toggleModal(1)"><span class="fa fa-remove"></span> Cancel</button>
+                <button class="btn btn-success pull-right btn-flat" ng-click="updateUser()"><span class="fa fa-check"></span> Save</button>
+            </div>
+        </div>
+    </div>
+</div>

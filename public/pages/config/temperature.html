@@ -1,0 +1,96 @@
+
+
+<div id="page-heading">
+    <h3 class="page-title">Temperature Configuration</h3>
+</div>
+
+<section class="container-fluid">
+    
+    <div class="row">
+        
+        <!-- current config -->
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Current Threshold
+                    <div class="panel-options pull-right">
+                        <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="" data-toggle="minimize">
+                            <i class="fa fa-minus"></i>
+                            <i class="fa fa-plus"></i>
+                        </a>
+<!--                        <a href="" data-toggle="close"><i class="fa fa-remove"></i></a>-->
+                    </div>
+                </div>
+                
+                <div class="panel-body">
+                    
+                    <div class="col-xlg-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="indicator widget bg-primary">
+                            <span class="icon icon-chart icon-fw icon-4x"></span>
+                            <p class="title ng-scope ng-binding" duration="5" count-to="{{currTemp.lower}}" count-from="0">{{currTemp.lower}} &deg;F</p>
+                            <span class="subtitle">Lower Threshold</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xlg-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="indicator widget bg-danger">
+                            <span class=""><i class="font-52 fa fa-thermometer-empty"></i></span>
+                            <p class="title ng-scope ng-binding" duration="5" count-to="{{currTemp.upper}}" count-from="0">{{currTemp.upper}} &deg;F</p>
+                            <span class="subtitle">Upper Threshold</span>
+                        </div>
+                    </div>
+                        
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        <!-- new config -->
+        <div class="col-md-8" ng-show="hasPermission('configuration.temperature.edit')">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Change Thresholds
+                    <div class="panel-options pull-right">
+                        <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="" data-toggle="minimize">
+                                <i class="fa fa-minus"></i>
+                                <i class="fa fa-plus"></i>
+                        </a>
+                        <a href="" data-toggle="close"><i class="fa fa-remove"></i></a>
+                    </div>
+                </div>
+                
+                <div class="panel-body">
+                       
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">Lower Threshold (&deg;F)</label>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                            <div slider ng-model="temp.lower" floor="{{defTemp.min}}" ceiling="{{defTemp.lower}}" step="1" precision="1"></div>
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">Upper Threshold (&deg;F)</label>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                            <div slider ng-model="temp.upper" floor="{{defTemp.upper}}" ceiling="{{defTemp.max}}" step="1" precision="1"></div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <br/>
+                        <button type="button" class="btn btn-success icon-standalone" ng-click="saveTempConfig()"><i class="fa fa-plus"></i> <span>Save</span></button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+   
+    </div>
+    
+
+    
+</section>

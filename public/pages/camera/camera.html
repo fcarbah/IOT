@@ -1,0 +1,68 @@
+
+<div id="page-heading" class="no-margin">
+    <h3 class="page-title grey-text">Camera</h3>
+</div>
+
+<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <article class="panel panel-default">
+        <header class="panel-heading"> <i class="icon-controls"></i> Controls</header>
+        <section class="panel-body">
+            <button type="button" class="btn btn-primary btn-flat" ng-if="camera.off===1" ng-click="on()">Turn On</button>
+            <button type="button" class="btn btn-danger btn-flat" ng-if="camera.on===1" ng-click="off()">Turn Off</button>
+            <button type="button" class="btn btn-success btn-flat" ng-if="camera.on===1 && permissions.camera.photo.capture" ng-click="takePicture()">Take Photo</button>
+        </section>
+    </article>
+</div>-->
+
+<section class="container-fluid">
+    <div class="row"><!--
+
+        <div class="col-md-12">-->
+
+            <div class="camera">
+
+                <div class="img-container teal accent-4" ng-class="{'cam-loadingbk': executing}">
+
+                    <div class="col-md-12 font-24 pad-20p white-text" ng-if="executing || !camOn">
+                        <p class="font-36">{{msg}}</p>
+                        <button class="btn transparent-black green-text text-accent-4 btn-flat font-20" ng-hide="camOn || executing" ng-click="on()">
+                            <i class="fa fa-power-off font-28"></i>
+                        </button>
+                    </div>
+
+                    <img src="{{videoSrc | src}}" ng-hide="executing || !camOn"/>
+
+                    <div class="controls" ng-show="camOn">
+
+                        <div class="form-group">
+
+                            <button class="btn transparent-black red-text text-lighten-1 btn-flat font-20 pull-left" ng-if="camOn" ng-click="off()" ng-hide="executing">
+                                <i class="fa fa-power-off font-28"></i>
+                            </button>
+
+                            <button class="btn purple-text text-darken-4 btn-success" ng-if="camera.on===1 && permissions.camera.photo.capture" ng-click="takePicture()" ng-hide="executing">
+                                <i class="icon-camera font-24"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="preview-container grey lighten-4">
+                    <p class="font-16"><a href ui-sref="app.admin.camera.gallery" class="pull-right">View Gallery</a><br/></p>
+
+                    <div masonry>
+                        <div class="masonry-brick col-md-6 margin-tb10" ng-repeat="pic in photos">
+                            <img ng-src="{{ pic.path | src }}" alt="A masonry brick">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+<!--        </div>
+
+
+-->    </div>
+
+</section>

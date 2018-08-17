@@ -1,0 +1,74 @@
+@droparea-height: 60px;
+@base-color: @gray-light;
+
+.btn-upload {
+	position: relative;
+
+	input[type="file"] {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		opacity: 0;
+		top: 0; left: 0;
+	}
+}
+.upload-area {
+	display: inline-block;
+	background-color: #fff;
+	border: 1px dashed @panel-inner-border;
+	border-radius: @border-radius-base;
+	box-shadow: inset 0 0 0 3px #fff;
+	color: #959595;
+	text-align: center;
+	font-size: @font-size-h4;
+	position: relative;
+	font-family: @font-family-serif;
+	cursor: pointer;
+	padding: 15px 20px 15px 60px;
+
+	transition: all .2s ease-out;
+
+	small {
+		display: block;
+		font-size: @font-size-h6;
+	}
+
+	svg {
+		position: absolute;
+		display: block;
+		width: 40px;
+		top: 50%; left: 10px;
+		margin-top: -22px;
+		path {
+			transition: all .2s ease-out;
+		}
+	}
+
+	&:hover {
+		background-color: fade(@body-bg, 40%);
+		color: @brand-success;
+		svg path {
+			fill: @brand-success;
+		}
+	}
+}
+.upload-area.upload-block {
+	display: block;
+}
+.upload-area.upload-lg {
+	padding: 15px;
+	width: 260px;
+
+	svg {
+		width: 100%;
+		position: relative;
+		margin: 0;
+		top: initial;
+		left: initial;
+		margin-bottom: 20px;
+	}
+	span {
+		display: block;
+		font-size: @font-size-h3;
+	}
+}

@@ -1,0 +1,449 @@
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "variables.less";
+@import "mixins.less";
+
+
+
+//
+// Buttons
+// --------------------------------------------------
+
+// Common styles
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+  // Reset the shadow
+  &:active,
+  &.active {
+	// .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+}
+
+// Mixin for generating new styles
+.btn-styles(@btn-color: #555) {
+  // #gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
+  .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
+  background-repeat: repeat-x;
+  // border-color: darken(@btn-color, 14%);
+
+  &:hover,
+  &:focus  {
+	background-color: darken(@btn-color, 12%);
+	background-position: 0 -15px;
+  }
+
+  &:active,
+  &.active {
+	background-color: darken(@btn-color, 12%);
+	border-color: darken(@btn-color, 14%);
+  }
+
+  &:disabled,
+  &[disabled] {
+	background-color: darken(@btn-color, 12%);
+	background-image: none;
+  }
+}
+
+// Common styles
+.btn {
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.active {
+	background-image: none;
+  }
+}
+
+// Apply the mixin to the buttons
+.btn-default { 
+  .btn-styles(@btn-default-bg); 
+  border-color: @btn-default-border !important;
+  &:hover {
+	background-color: @panel-inner-border !important;
+  }
+  &:active, &:focus {
+	background-color: fade(@panel-inner-border,20%) !important;
+  }
+}
+.btn-primary { .btn-styles(@btn-primary-bg); }
+.btn-success { .btn-styles(@btn-success-bg); }
+.btn-info    { .btn-styles(@btn-info-bg); }
+.btn-warning { .btn-styles(@btn-warning-bg); }
+.btn-danger  { .btn-styles(@btn-danger-bg); }
+
+// hover effect
+.btn {
+	.transition(all .2s ease-in);
+}
+
+
+//
+// Images
+// --------------------------------------------------
+
+.thumbnail,
+.img-thumbnail {
+}
+
+
+
+//
+// Dropdowns
+// --------------------------------------------------
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: darken(@dropdown-link-hover-bg, 5%);
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: darken(@dropdown-link-active-bg, 5%);
+}
+
+
+
+
+//
+// Navbar
+// --------------------------------------------------
+
+.navbar-icon-bg (@bg, @color) {
+  position: relative;
+  > [class^="icon-"], > [class*="icon-"] {
+	border:none;
+	background: none;
+	background-color: @bg;
+	padding: 0;
+	line-height: @navbar-height;
+	font-size: 28px;
+
+	&:before {
+	  color: @color;
+	}
+	&:hover {
+	  // background-color: fade(@bg, 5%);
+	}
+  }
+  > small {
+	position: absolute;
+	background-color: @color;
+	top: 4px;
+	right: 4px;
+	border-radius: 10px;
+	padding: 4px 6px;
+	font-size: 9px;
+	color: #fff;
+	line-height: 1em;
+  }
+}
+
+// Default navbar
+.navbar {
+  .reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
+  border-radius: @navbar-border-radius;
+
+  .navbar-link-default { .navbar-icon-bg(transparent, lighten(@text-color, 40%)); }
+  .navbar-link-primary { .navbar-icon-bg(@brand-primary, darken(@brand-primary, 20%)); }
+  .navbar-link-success { .navbar-icon-bg(@brand-success, darken(@brand-success, 20%)); }
+  .navbar-link-info    { .navbar-icon-bg(@brand-info, lighten(@brand-info, 20%)); }
+  .navbar-link-warning { .navbar-icon-bg(@brand-warning, darken(@brand-warning, 20%)); }
+  .navbar-link-danger  { .navbar-icon-bg(@brand-danger, lighten(@brand-danger,  10%)); }
+}
+
+.navbar-brand,
+.navbar-nav > li > a {
+  position: relative;
+
+}
+
+// Inverted navbar
+.navbar-inverse {
+  .reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
+}
+
+// Undo rounded corners in static and fixed navbars
+.navbar-static-top,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  border-radius: 0;
+}
+
+// Badges
+.badge.badge-default { background-color: @gray-light; }
+.badge.badge-success { background-color: @brand-success; }
+.badge.badge-primary { background-color: @brand-primary; }
+.badge.badge-info    { background-color: @brand-info;    }
+.badge.badge-warning { background-color: @brand-warning; }
+.badge.badge-danger  { background-color: @brand-danger;  }
+
+//
+// Alerts
+// --------------------------------------------------
+
+// Common styles
+.alert {
+}
+
+//
+// Progress bars
+// --------------------------------------------------
+
+// Give the progress background some depth
+.progress {
+}
+
+// Mixin for generating new styles
+.progress-bar-styles(@color) {
+}
+
+// Apply the mixin to the progress bars
+.progress-bar            { .progress-bar-styles(@progress-bar-bg); }
+.progress-bar-success    { .progress-bar-styles(@progress-bar-success-bg); }
+.progress-bar-info       { .progress-bar-styles(@progress-bar-info-bg); }
+.progress-bar-warning    { .progress-bar-styles(@progress-bar-warning-bg); }
+.progress-bar-danger     { .progress-bar-styles(@progress-bar-danger-bg); }
+
+// Reset the striped class because our mixins don't do multiple gradients and
+// the above custom styles override the new `.progress-bar-striped` in v3.2.0.
+.progress-bar-striped {
+  #gradient > .striped();
+}
+
+
+//
+// List groups
+// --------------------------------------------------
+
+.list-group {
+  border-radius: @border-radius-base;
+  .box-shadow(0 1px 2px rgba(0,0,0,.05));
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  border-color: darken(@list-group-active-border, 7.5%);
+}
+
+
+
+//
+// Panels
+// --------------------------------------------------
+
+// Common styles
+.panel {
+  .box-shadow(0 1px 2px rgba(0,0,0,.05));
+
+  .panel-heading {
+	font-size: 16px;
+  }
+  &.collapsed .panel-options a {
+	.fa.fa-minus { display: none; }
+	.fa.fa-plus { display: inline;}
+  }
+}
+
+
+//
+// Wells
+// --------------------------------------------------
+
+.well {
+  border-color: darken(@well-bg, 10%);
+}
+
+// special dropdown for fixed top navbars 
+#heading {
+	height: 50px;
+	.dropdown-menu {
+		 > li {
+			position: relative;
+			width: 200px;
+			 > a {
+				display: block;
+				border-left: none;
+				background-color: @body-bg;
+				padding: 10px 20px;
+				font-size: 14px;
+				color: @gray;
+				width: 100%;
+
+				[class^="icon-"], [class*="icon-"] {
+					font-size: 18px;
+				}
+
+				.indicator, .image {
+					width: 42px;
+					height: 42px;
+					float: left;
+					margin: 0 10px 0 0 !important;
+				}
+				.image {
+					position: relative;
+				}
+				.indicator {
+					padding: 8px 5px !important;
+					border-radius: @border-radius-base;
+				}
+				.title {
+					word-wrap: break-word;
+					white-space: normal;
+				}
+				.time {
+					display: block;
+					color: fade(@gray-light, 70%);
+				}
+
+				&:hover {
+					border-left: none;
+					background-color: @dropdown-link-hover-bg;
+
+					.image:after {
+						background-position: 0 -42px;
+					}
+				}
+			}
+			&.has-icon {
+				width: 300px;
+				a {
+					padding: 15px 10px;
+					font-size: 12px;
+				}
+			}
+			&.heading {
+				width: 100%;
+				line-height: 2.8em;
+				font-size: @font-size-h5;
+			}
+			&.more {
+				width: 100%;
+				a {
+					background-color: #fff;
+					padding: 10px 0 5px 0;
+					font-weight: 500;
+					text-align: center;
+				}
+			}
+		}
+		
+	}
+	.dropdown-menu li:not(:last-child):after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1px;
+		position: absolute;
+		bottom: 0; left: 0;
+		background: linear-gradient(to right, rgba(30,87,153,0) 0%,rgba(209,222,230,1) 50%,rgba(125,185,232,0) 100%);
+	}
+}
+
+// plain input group addon 
+.input-group.plain-addon {
+	.input-group-addon {
+		background-color: transparent;
+	}
+	.input-group-addon + .form-control { border-left-color: transparent; }
+	.form-control:first-child { border-right-color: transparent; } 
+}
+
+// fix for non button non link element
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+// top navbar icon hover effects, 
+.navbar.navbar-default.navbar-static-top {
+	.navbar-toggle {
+		display: block;
+	}
+}
+@media (max-width: @screen-sm-min) {
+	.navbar.navbar-default.navbar-static-top {
+		transition: all .1s linear;
+
+		.navbar-toggle {
+			display: block;
+		}
+		.navbar-right {
+			float: right;
+
+			.nav.navbar-nav {
+				margin:0;
+				li {
+					.dropdown-toggle {
+						font-size: @font-size-h3;
+					}
+					float: left;
+				}
+			}
+		}
+		.navbar-nav .open .dropdown-menu {
+			position: fixed;
+			top: 50px; left: 0;
+			background-color: #fff;
+			border-width: 1px 0 0 0;
+			border-color: @panel-inner-border;
+			border-style: solid;
+			border-radius: 0;
+			.box-shadow(0 1px 1px rgba(0,0,0,.2));
+
+			> li {
+				width: 100% !important;
+			}
+		}
+	}
+}
+
+.modal-backdrop{
+	&.ng-enter {
+		.transition(all .2s ease-out);
+		opacity: 0;
+	}
+	&.ng-enter-active {
+		opacity: 1;
+	}
+	&.ng-leave {
+		.transition(all .2s ease-in);
+	}
+	&.ng-leave-active {
+		opacity: 0;
+	}
+}
+.modal {
+	&.ng-enter {
+		.transition(all .2s cubic-bezier(0,1,.52,1));
+		opacity: 0;
+		transform: translateY(-300px);
+	}
+	&.ng-enter.ng-enter-active {
+		opacity: 1;
+		transform: translateY(0);		
+	}
+	&.ng-leave {
+		.transition(all .2s cubic-bezier(0,1,.52,1));
+	}
+	&.ng-leave.ng-leave-active {
+		opacity: 0;
+		transform: translateY(-300px);
+	}
+}
+
+.popover {
+	&.ng-enter {
+		opacity: 0;
+		.transition(all .5s ease-in);
+	}
+	&.ng-enter.ng-enter-active {
+		opacity: 1;
+		transform: transitionX(100px);
+	}
+}

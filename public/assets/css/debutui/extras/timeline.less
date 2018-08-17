@@ -1,0 +1,261 @@
+@timeline-section-radius: 20px;
+@timeline-section-bg: #fff;
+
+@timeline-vertical-bg: #d1dee6;
+
+@timeline-point-size: 18px;
+@timeline-point-offset: 20px;
+
+@timeline-content-radius: @border-radius-base;
+@timeline-content-header: #dfe0e5;
+
+.ui-timeline {
+	width: 100%;
+	position: relative;
+
+	&:before {
+		content: '';
+		z-index: 1;
+		position: absolute;
+		left: 50%; 
+		width: 4px;
+		height: 100%;
+		margin-left: -2px;
+		background-color: @timeline-vertical-bg;
+		background: linear-gradient(to bottom, @timeline-vertical-bg 0%,@timeline-vertical-bg 95%,rgba(255,255,255,0) 100%); /* W3C */
+	}
+	.tl-date {
+		position: relative;
+		background-color: #fff;
+		border-radius: @border-radius-base;
+		text-align: center;
+		margin:0 auto;
+		width: 120px;
+		font-size: 14px;
+		font-family: @font-family-serif;
+		font-weight: @font-normal;
+		padding: 6px 0;
+		z-index: 2;
+		margin-bottom: 20px;
+	}
+
+	.tl-block {
+		position: relative;
+
+		.tl-dot {
+			width: @timeline-point-size;
+			height: @timeline-point-size;
+
+			position: absolute;
+			z-index: 2;
+			left: 50%;
+			top: @timeline-point-offset;
+			
+			margin-left: -@timeline-point-size/2px;
+			border: 2px solid @body-bg;
+			background-color: @timeline-vertical-bg;
+			border-radius: @timeline-section-radius;
+		}
+
+		.panel {
+			position: relative;
+			margin-left: 5px;
+			margin-right: 5px;
+
+			.panel-heading {
+				.picture {
+					display: block;
+					float: left;
+					border-radius: @border-radius-base;
+					width: 40px;
+					height: 40px;
+					margin-right: 15px;
+				}
+				.title {
+					display: block;
+					margin: 0;
+					color: @gray-light;
+					font-size: @font-size-h5;
+				}
+				.subtitle {
+					display: block;
+					color: @gray-light;
+					font-size: @font-size-h6;
+				}
+				&:after {
+					content: '';
+					display: block;
+					clear: both;
+				}
+				.date {
+					display: block;
+					line-height: 40px;
+					text-align: right;
+					font-size: @font-size-small;
+				}
+			}
+	
+			&.left-side {
+				&:before {
+					content: '';
+					z-index: 0;
+					display: block;
+					position: absolute;
+					top: @timeline-point-offset - 2px; 
+					left: -8px;
+					width: 0;
+					height: 0;
+					border-width: 8px 8px 8px 0;
+					border-style: solid;
+					border-color: transparent @timeline-vertical-bg transparent transparent; 
+				}
+				&:after {
+					content: '';
+					z-index: 0;
+					display: block;
+					position: absolute;
+					top: @timeline-point-offset - 2px; 
+					left: -6px;
+					width: 0;
+					height: 0;
+					border-width: 8px 8px 8px 0;
+					border-style: solid;
+					border-color: transparent #fff transparent transparent; 
+				}
+			}
+			&.right-side {
+				&:before {
+					content: '';
+					z-index: 0;
+					display: block;
+					position: absolute;
+					top: 18px; 
+					right: -8px;
+					width: 0;
+					height: 0;
+					border-width: 8px 0 8px 8px;
+					border-style: solid;
+					border-color: transparent transparent transparent @timeline-vertical-bg; 
+				}
+				&:after {
+					content: '';
+					z-index: 0;
+					display: block;
+					position: absolute;
+					top:18px; 
+					right: -6px;
+					width: 0;
+					height: 0;
+					border-width: 8px 0 8px 8px;
+					border-style: solid;
+					border-color: transparent transparent transparent #fff; 
+				}
+			}
+			.panel-body {
+				.thumbnails {
+					img {
+						display: block;
+						width: 100%;
+					}
+				}
+				.event {
+					border-radius: @border-radius-base;
+					padding: 20px;
+					display: block;
+					background: url('../img/timeline_bg.jpg') no-repeat center center;
+					background-size: cover;
+
+					.avatar {
+						width: 120px;
+						height: 120px;
+						display: block;
+						border-radius: 200px;
+						margin: 0 auto;
+						border: 4px solid rgba(0,0,0,.2);
+					}
+					.event-info {
+						// margin: 10px 0;
+						font-size: @font-size-base;
+						span:nth-child(2n) {
+							padding-right: 10px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.ui-timeline.view-left {
+	&:before {
+		left: 0px; 
+		margin-left: 0;
+	}
+	.tl-block {
+		.tl-dot {
+			left: 8px;
+			margin:0;
+		}
+		.panel {
+			margin-left: 25px;
+		}
+		.panel.left-side, .panel.right-side {
+			&:before {
+				left: -8px;
+				right: initial;
+				border-width: 8px 8px 8px 0;
+				border-color: transparent @timeline-vertical-bg transparent transparent; 
+			}
+			&:after {
+				top: @timeline-point-offset - 2px; 
+				left: -6px;
+				right: initial;
+				border-width: 8px 8px 8px 0;
+				border-color: transparent #fff transparent transparent; 
+			}
+		}		
+	}
+}
+
+@media (max-width: @screen-lg-min) {
+	.ui-timeline {
+		&:before {
+			left: 0px; 
+			margin-left: 0;
+		}
+		.tl-block {
+			.tl-dot {
+				left: 8px;
+				margin:0;
+			}
+			.panel {
+				margin-left: 25px;
+			}
+			.panel.left-side, .panel.right-side {
+				&:before {
+					left: -8px;
+					right: initial;
+					border-width: 8px 8px 8px 0;
+					border-color: transparent @timeline-vertical-bg transparent transparent; 
+				}
+				&:after {
+					top: @timeline-point-offset - 2px; 
+					left: -6px;
+					right: initial;
+					border-width: 8px 8px 8px 0;
+					border-color: transparent #fff transparent transparent; 
+				}
+			}		
+		}
+	}
+}
+@media (max-width: @screen-sm-min) {
+	.ui-timeline .tl-block .panel .panel-heading .date {
+		line-height: 1em;
+		padding-top: 10px;
+		text-align: left;
+	}
+	.debut-tasks-list .row label.btn-check {
+		margin: 8px 10px 25px 5px;
+	}
+}

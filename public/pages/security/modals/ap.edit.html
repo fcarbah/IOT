@@ -1,0 +1,65 @@
+
+<div class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="toggleModal(0);$hide()">&times;</button>
+                <h4 class="modal-title">Editing "{{editPolicy.name}}" Account Policy</h4>
+            </div>
+            <div class="modal-body">
+                
+                <form class="row" name="editForm">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.name.$invalid && editForm.name.$touched, 'has-success': editForm.name.$valid }">
+                            <label class="control-label"><span>Policy Name</span></label>
+                            <input type="text" class="form-control" name="name" ng-model="editPolicy.name" readonly disabled required>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.role.$invalid  && editForm.role.$touched, 'has-success': editForm.role.$valid }">
+                            <label class="control-label"><span>User Group</span></label>
+                            <select class="form-control" ng-model="editPolicy.role_id" name="role" required readonly disabled>
+                                <option ng-repeat="item in userRoles" value="{{item.id}}" ng-selected="editPolicy.role_id==item.id">{{item.name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.attempts.$invalid && editForm.attempts.$touched, 'has-success': editForm.attempts.$valid }">
+                            <label class="control-label"><span>Failed Login Attempts</span></label>
+                            <select class="form-control" ng-model="editPolicy.failedLoginAttempts" name="attempts" required>
+                                <option ng-repeat="item in counts" value="{{item}}" ng-selected="editPolicy.failedLoginAttempts==item">{{item}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.threshold.$invalid  && editForm.threshold.$touched, 'has-success': editForm.threshold.$valid }">
+                            <label class="control-label"><span>Account Lockout Threshold</span></label>
+                            <select class="form-control" ng-model="editPolicy.threshold" name="threshold" required>
+                                <option ng-repeat="item in counts" value="{{item}}" ng-selected="editPolicy.threshold==item">{{item}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.duration.$invalid  && editForm.duration.$touched, 'has-success': editForm.duration.$valid }">
+                            <label class="control-label"><span>Account Lockout Duration</span></label>
+                            <select class="form-control" ng-model="editPolicy.lockoutDuration" name="duration" required>
+                                <option ng-repeat="item in lockoutDurations" value="{{item.id}}" ng-selected="editPolicy.lockoutDuration==item.id">{{item.value}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.reset.$invalid  && editForm.reset.$touched, 'has-success': editForm.reset.$valid }">
+                            <label class="control-label"><span>Reset Account Lockout After</span></label>
+                            <select class="form-control" ng-model="editPolicy.reset" name="reset" required>
+                                <option ng-repeat="item in resetDurations" value="{{item.id}}" ng-selected="editPolicy.reset==item.id">{{item.value}}</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-flat" ng-click="toggleModal(0);$hide()"><span class="fa fa-remove"></span> Cancel</button>
+                <button class="btn btn-success pull-right btn-flat" ng-click="saveAP()"><span class="fa fa-check"></span> Save</button>
+            </div>
+        </div>
+    </div>
+</div>

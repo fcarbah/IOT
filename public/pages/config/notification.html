@@ -1,0 +1,77 @@
+<div id="page-heading">
+    <h3 class="page-title">Notifications Configuration</h3>
+</div>
+
+<section class="container-fluid">
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            
+            <div class="panel panel-primary">
+                
+                <div class="panel-heading">Alert Intervals</div>
+                
+                <div class="form-wizard wizard-vertical">
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <ul class="nav nav-tabs tabs" role="tablist" ui-tabs>
+                                <li class="active"><a href="#mycontacts" role="tab" data-toggle="tab" class="active no-border-radius">My Contacts</a></li>
+                                <li><a href="#emergency" role="tab" data-toggle="tab" class="no-border-radius">Emergency Contacts</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-lg-9 col-md-9 col-sm-9">
+                            
+                            <div class="panel-body tab-content">
+                                
+                                <div class="wizard-pane tab-pane active" id="mycontacts">									
+                                    <h5>Notify Contacts when temperature reaches threshold</h5>
+                                    <dl>
+
+                                        <dt ng-repeat="item in availableNotifs.contacts">
+                                            <label class="btn-radio">
+                                                <input type="radio" name="contact" value="{{item.id}}" ng-model="defNotif.contacts.id" ng-click="notifChange(1)"
+                                                    ng-selected="defNotif.contacts.value===item.value" ng-disabled="!hasPermission('configuration.notifications.edit')">
+                                                <span>{{item.value}}</span>
+                                            </label>
+                                        </dt>
+
+                                    </dl>
+                                    
+                                </div>
+                                
+                                <div class="wizard-pane tab-pane" id="emergency">
+                                    <h5>Notify Emergency Contacts after  2nd alert has been sent to contacts</h5>
+                                    <dl>
+                                        <dt ng-repeat="item in availableNotifs.emergency">
+                                            <label class="btn-radio">
+                                                <input type="radio" name="emergency" value="{{item.id}}" ng-model="defNotif.emergency.id" ng-click="notifChange(2)"
+                                                    ng-selected="defNotif.emergency.value===item.value" ng-disabled="!hasPermission('configuration.notifications.edit')">
+                                                <span>{{item.value}}</span>
+                                            </label>
+                                        </dt>
+                                    </dl>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                        
+                </div>
+                
+                <div class="panel-footer clearfix">
+                    <button class="btn btn-flat btn-success" ng-click="saveNotifConfig()" ng-show="hasPermission('configuration.notifications.edit')"><span class="fa fa-check"></span> Save</button>
+                </div>
+                    
+            </div>
+                
+                
+        </div>
+
+    </div>
+    
+</section>

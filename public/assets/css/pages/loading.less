@@ -1,0 +1,104 @@
+.loading {
+	background: transparent;
+	position: fixed;
+	top:0; left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	overflow: hidden;
+	
+	animation-name: anim3;
+	animation-duration: .2s;
+	animation-delay: 2.2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+
+	.slice1, .slice2 {
+		background-image: url('../img/static/background.jpg'); 
+		background-repeat: no-repeat;
+		background-size: 100% 200%;
+		background-position: center top;
+		width: 100%;
+		height: 50%;
+
+		animation-name: anim2;
+		animation-duration: .2s;
+		animation-delay: 2.2s;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-in;
+	}
+	.slice2 {
+		background-position: center bottom;
+		animation-name: anim2a;
+	}
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 50%; left: 0;
+		width: 0%; height: 2px;
+		margin-top: -1px;
+		background-color: @brand-success;
+
+		animation-name: anim1;
+		animation-duration: 1s;
+		animation-delay: 1s;
+		animation-timing-function: ease-out;
+	}
+	&:after {
+		content: '';
+		display: block;
+		width: 305px;
+		height: 305px;
+		background: url('../img/logoxl.png') no-repeat center center;
+		background-size: cover;
+		position: absolute;
+		top: 50%; left: 50%;
+		margin-left: -305/2px;
+		margin-top: -305/2px;
+
+		animation-name: anim1a;
+		animation-duration: .2s;
+		animation-delay: 2s;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-in;
+	}
+}
+
+.loading.no-animate {
+	animation-play-state: paused;
+	&:after, .slice1, .slice2 {
+		animation-play-state: paused;
+	}
+}
+
+@keyframes anim1 {
+	from { width: 0%; }
+	to { width: 100%; }
+}
+@keyframes anim1a {
+	from { opacity: 1; }
+	to { opacity:0; }
+}
+@keyframes anim2 {
+	from { transform: translateY(0); }
+	to { transform: translateY(-100%); }
+}
+@keyframes anim2a {
+	from { transform: translateY(0); }
+	to { transform: translateY(100%); }
+}
+
+@keyframes anim3 {
+	from { }
+	to { visibility: hidden; }
+}
+
+@media (max-width: @screen-sm-min) {
+	.loading:after {
+		width: 160px;
+		height: 160px;
+		margin-left: -160/2px;
+		margin-top: -160/2px;
+	}
+}

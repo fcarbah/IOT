@@ -1,0 +1,159 @@
+@font-face {
+  font-family: 'Debut Weather';
+  src: url('../font/debut-ui-weather/debut-ui-weather.eot');
+  src: 
+    url('../font/debut-ui-weather/debut-ui-weather.eot?#iefix') format('embedded-opentype'), 
+    url('../font/debut-ui-weather/debut-ui-weather.woff') format('woff'), 
+    url('../font/debut-ui-weather/debut-ui-weather.ttf') format('truetype'), 
+    url('../font/debut-ui-weather/debut-ui-weather.svg#weathericons-regular-webfontRg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-weather-"]:before, [class*="icon-weather-"]:before {
+  display: inline-block;
+  font-family: 'Debut Weather';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+[class^="icon-weather-"], [class*="icon-weather-"] {
+  &.icon-lg:before { font-size: @font-size-base*1.3; }
+  &.icon-2x:before { font-size: @font-size-base*2; }
+  &.icon-3x:before { font-size: @font-size-base*3; }
+  &.icon-4x:before { font-size: @font-size-base*4; }
+  &.icon-5x:before { font-size: @font-size-base*5; }
+  &.icon-6x:before { font-size: @font-size-base*6; }
+
+  &.rotate45:before { transform: rotate(-45deg); }
+  &.rotate90:before { transform: rotate(-90deg); }
+  &.rotate135:before { transform: rotate(-135deg); }
+  &.rotate180:before { transform: rotate(-180deg); }
+
+  &.icon-fw:before { width: (18em / 10); }
+}
+
+.icon-weather-day-cloudy-gusts:before { content: "\f000"; }
+.icon-weather-day-cloudy-windy:before { content: "\f001"; }
+.icon-weather-day-cloudy:before { content: "\f002"; }
+.icon-weather-day-fog:before { content: "\f003"; }
+.icon-weather-day-hail:before { content: "\f004"; }
+.icon-weather-day-lightning:before { content: "\f005"; }
+.icon-weather-day-rain-mix:before { content: "\f006"; }
+.icon-weather-day-rain-wind:before { content: "\f007"; }
+.icon-weather-day-rain:before { content: "\f008"; }
+.icon-weather-day-showers:before { content: "\f009"; }
+.icon-weather-day-snow:before { content: "\f00a"; }
+.icon-weather-day-sprinkle:before { content: "\f00b"; }
+.icon-weather-day-sunny-overcast:before { content: "\f00c"; }
+.icon-weather-day-sunny:before { content: "\f00d"; }
+.icon-weather-day-storm-showers:before { content: "\f00e"; }
+.icon-weather-day-thunderstorm:before { content: "\f010"; }
+.icon-weather-cloudy-gusts:before { content: "\f011"; }
+.icon-weather-cloudy-windy:before { content: "\f012"; }
+.icon-weather-cloudy:before { content: "\f013"; }
+.icon-weather-fog:before { content: "\f014"; }
+.icon-weather-hail:before { content: "\f015"; }
+.icon-weather-lightning:before { content: "\f016"; }
+.icon-weather-rain-mix:before { content: "\f017"; }
+.icon-weather-rain-wind:before { content: "\f018"; }
+.icon-weather-rain:before { content: "\f019"; }
+.icon-weather-showers:before { content: "\f01a"; }
+.icon-weather-snow:before { content: "\f01b"; }
+.icon-weather-sprinkle:before { content: "\f01c"; }
+.icon-weather-storm-showers:before { content: "\f01d"; }
+.icon-weather-thunderstorm:before { content: "\f01e"; }
+.icon-weather-windy:before { content: "\f021"; }
+.icon-weather-night-alt-cloudy-gusts:before { content: "\f022"; }
+.icon-weather-night-alt-cloudy-windy:before { content: "\f023"; }
+.icon-weather-night-alt-hail:before { content: "\f024"; }
+.icon-weather-night-alt-lightning:before { content: "\f025"; }
+.icon-weather-night-alt-rain-mix:before { content: "\f026"; }
+.icon-weather-night-alt-rain-wind:before { content: "\f027"; }
+.icon-weather-night-alt-rain:before { content: "\f028"; }
+.icon-weather-night-alt-showers:before { content: "\f029"; }
+.icon-weather-night-alt-snow:before { content: "\f02a"; }
+.icon-weather-night-alt-sprinkle:before { content: "\f02b"; }
+.icon-weather-night-alt-storm-showers:before { content: "\f02c"; }
+.icon-weather-night-alt-thunderstorm:before { content: "\f02d"; }
+.icon-weather-night-clear:before { content: "\f02e"; }
+.icon-weather-night-cloudy-gusts:before { content: "\f02f"; }
+.icon-weather-night-cloudy-windy:before { content: "\f030"; }
+.icon-weather-night-cloudy:before { content: "\f031"; }
+.icon-weather-night-hail:before { content: "\f032"; }
+.icon-weather-night-lightning:before { content: "\f033"; }
+.icon-weather-night-rain-mix:before { content: "\f034"; }
+.icon-weather-night-rain-wind:before { content: "\f035"; }
+.icon-weather-night-rain:before { content: "\f036"; }
+.icon-weather-night-showers:before { content: "\f037"; }
+.icon-weather-night-snow:before { content: "\f038"; }
+.icon-weather-night-sprinkle:before { content: "\f039"; }
+.icon-weather-night-storm-showers:before { content: "\f03a"; }
+.icon-weather-night-thunderstorm:before { content: "\f03b"; }
+.icon-weather-celsius:before { content: "\f03c"; }
+.icon-weather-cloud-down:before { content: "\f03d"; }
+.icon-weather-cloud-refresh:before { content: "\f03e"; }
+.icon-weather-cloud-up:before { content: "\f040"; }
+.icon-weather-cloud:before { content: "\f041"; }
+.icon-weather-degrees:before { content: "\f042"; }
+.icon-weather-down-left:before { content: "\f043"; }
+.icon-weather-down:before { content: "\f044"; }
+.icon-weather-fahrenheit:before { content: "\f045"; }
+.icon-weather-horizon-alt:before { content: "\f046"; }
+.icon-weather-horizon:before { content: "\f047"; }
+.icon-weather-left:before { content: "\f048"; }
+.icon-weather-lightning:before { content: "\f016"; }
+.icon-weather-night-fog:before { content: "\f04a"; }
+.icon-weather-refresh-alt:before { content: "\f04b"; }
+.icon-weather-refresh:before { content: "\f04c"; }
+.icon-weather-right:before { content: "\f04d"; }
+.icon-weather-sprinkles:before { content: "\f04e"; }
+.icon-weather-strong-wind:before { content: "\f050"; }
+.icon-weather-sunrise:before { content: "\f051"; }
+.icon-weather-sunset:before { content: "\f052"; }
+.icon-weather-thermometer-exterior:before { content: "\f053"; }
+.icon-weather-thermometer-internal:before { content: "\f054"; }
+.icon-weather-thermometer:before { content: "\f055"; }
+.icon-weather-tornado:before { content: "\f056"; }
+.icon-weather-up-right:before { content: "\f057"; }
+.icon-weather-up:before { content: "\f058"; }
+.icon-weather-wind-west:before { content: "\f059"; }
+.icon-weather-wind-south-west:before { content: "\f05a"; }
+.icon-weather-wind-south-east:before { content: "\f05b"; }
+.icon-weather-wind-south:before { content: "\f05c"; }
+.icon-weather-wind-north-west:before { content: "\f05d"; }
+.icon-weather-wind-north-east:before { content: "\f05e"; }
+.icon-weather-wind-north:before { content: "\f060"; }
+.icon-weather-wind-east:before { content: "\f061"; }
+.icon-weather-smoke:before { content: "\f062"; }
+.icon-weather-dust:before { content: "\f063"; }
+.icon-weather-snow-wind:before { content: "\f064"; }
+.icon-weather-day-snow-wind:before { content: "\f065"; }
+.icon-weather-night-snow-wind:before { content: "\f066"; }
+.icon-weather-night-alt-snow-wind:before { content: "\f067"; }
+.icon-weather-day-sleet-storm:before { content: "\f068"; }
+.icon-weather-night-sleet-storm:before { content: "\f069"; }
+.icon-weather-night-alt-sleet-storm:before { content: "\f06a"; }
+.icon-weather-day-snow-thunderstorm:before { content: "\f06b"; }
+.icon-weather-night-snow-thunderstorm:before { content: "\f06c"; }
+.icon-weather-night-alt-snow-thunderstorm:before { content: "\f06d"; }
+.icon-weather-solar-eclipse:before { content: "\f06e"; }
+.icon-weather-lunar-eclipse:before { content: "\f070"; }
+.icon-weather-meteor:before { content: "\f071"; }
+.icon-weather-hot:before { content: "\f072"; }
+.icon-weather-hurricane:before { content: "\f073"; }
+.icon-weather-smog:before { content: "\f074"; }
+.icon-weather-alien:before { content: "\f075"; }
+.icon-weather-snowflake-cold:before { content: "\f076"; }
+.icon-weather-stars:before { content: "\f077"; }
+.icon-weather-moon-full:before { content: "\f078"; }
+.icon-weather-moon-waxing-gibbous:before { content: "\f079"; }
+.icon-weather-moon-waxing-quarter:before { content: "\f07a"; }
+.icon-weather-moon-waxing-crescent:before { content: "\f07b"; }
+.icon-weather-moon-young:before { content: "\f07c"; }
+.icon-weather-moon-new:before { content: "\f07d"; }
+.icon-weather-moon-old:before { content: "\f07e"; }
+.icon-weather-moon-waning-crescent:before { content: "\f080"; }
+.icon-weather-moon-waning-quarter:before { content: "\f081"; }
+.icon-weather-moon-waning-gibbous:before { content: "\f082"; }
+.icon-weather-night-partly-cloudy:before { content: "\f083"; }

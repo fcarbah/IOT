@@ -1,0 +1,34 @@
+
+<div id="page-heading">
+    <h3 class="page-title">Gallery</h3>
+</div>
+
+<section class="container-fluid">
+    
+    <div class="row">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">Thumbnails</div>
+            <div class="panel-body">
+                <div class="row">
+                    
+                    <div class="row pad-10p font-32 grey-text text-lighten-1 text-center" ng-if="photos.length <1">
+                        No Images
+                    </div>
+                    
+                    <div masonry>
+                        <div class="masonry-brick col-md-3 margin-tb10" ng-repeat="pic in photos">
+                            <img ng-src="{{ pic.path | src }}" alt="A masonry brick">
+                            <button class="btn btn-danger btn-flat" ng-click="toggleDeleteForm(pic)" ng-if="permissions.camera.photo.delete">
+                                <i class="fa fa-trash-o fa-2x"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

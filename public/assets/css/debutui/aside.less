@@ -1,0 +1,229 @@
+@menu_line_height: 50px;
+@side-bar-bg: #191547;
+
+aside[role="navigation"] {
+	width: 220px;
+	height: 100%;
+	z-index: 100;
+	position: fixed;
+	top:0; left:0;
+	background-color: @side-bar-bg;
+
+	.brand {
+		display: block;
+		width: 100%;
+		background-color: @brand-success;
+		height: 50px;
+		overflow: hidden;
+		z-index: 2000;
+		img { display: block; }
+		.small { display: none; }
+	}
+
+	nav.side-bar {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		z-index: 59;
+		transition: all .1s linear;
+		background-color: @side-bar-bg;
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin:0;
+		}
+
+		.badge {
+			transition: padding .1s linear;
+		}
+
+		ul.nav-menu {
+			> li > a {
+				position: relative;
+				overflow: hidden;
+				padding: 14px 10px 14px 0;
+				display: block;
+				color: #fff;
+				height: @menu_line_height;
+				// border-bottom: 1px solid lighten(@side-bar-bg, 2%);
+				border-left: 2px solid transparent;
+
+				span {
+					font-family: @font-family-serif;
+					font-size: @font-size-h6;
+					font-weight: @font-light;
+				}
+
+				&:before {
+					color: #6c669a;
+					margin:0;
+					width: 48px;
+					font-size: 20px;
+				}
+				&:after {
+					content: '';
+					display: block;
+				}
+				
+			}
+			> li:hover > a, >li.active a {
+				background: #10123B;
+				border-left: 2px solid #38ddcc;
+				
+				&:before {
+					transition: all .1s linear;
+					color: #38ddcc;	
+				}
+			}
+		}
+		ul.nav-menu > li > ul {
+			background: #393368;
+			overflow: hidden;
+			max-height: 0;
+
+			box-shadow: inset 0 0 16px 6px #312D60;
+			transition: all .2s ease-out;
+
+			> li.title {
+				color:#fff;
+				font-weight: 500;
+				display: none;
+				background: #10123B;
+				line-height: @menu_line_height;
+				height: @menu_line_height;
+				padding: 0 20px;
+			}
+			> li:not(.title) > a {
+				transition: all .2s ease-out;
+				display: block;
+				font-family: @font-family-serif;
+				font-size: @font-size-h6;
+				font-weight: @font-light;
+
+				padding: 0 10px 0 40px;
+				line-height: 30px;
+				height: 30px;
+				color: #fff;
+
+				&:hover, &.active {
+					// transform: translateX(10px);
+					border: none;
+					color: #38ddcc;
+					background: none;
+				}
+				&:before {
+
+				}
+			}
+		}
+		ul.nav-menu > li[data-state="open"] > ul {
+			max-height: 500px;
+			padding: 10px 0;
+			visibility: visible;
+		}
+	}
+}
+
+.mini-charts {
+	padding: 0 15px;
+	margin: 15px 0;
+
+	.ui-chart { float: left; }
+	p { 
+		display: block; 
+		margin:0;
+		color: #fff;
+		font-family: @font-family-serif; 
+		// font-weight: @font-bold;
+	}
+	small {
+		// font-weight: @font-bold;
+		font-family: @font-family-serif; 
+	}
+}
+
+// contracted menu
+body.contract {
+	.mini-charts {
+		display: none;
+	}
+	aside[role="navigation"] {
+		width: 50px;
+		z-index: 100;
+
+		.ngscroll-scrollbar-container, .brand .large { display: none; }
+		.brand .small { display: block; }
+
+		nav.side-bar .scroll-viewport {
+			overflow: visible;
+		}
+		nav.side-bar ul.nav-menu li > a > span {
+			display: none;
+		}
+		nav.side-bar ul.nav-menu li > a:before {
+			color: #847eb8;
+			font-size: 24px;
+		}	
+		nav.side-bar ul.nav-menu li > a:hover:before {
+			color: #38ddcc;
+		}
+		nav.side-bar ul.nav-menu li > a .badge {
+			font-size: 9px;
+			line-height: 12px;
+			padding: 2px 5px;
+			margin: 0;
+			position: absolute;
+			top: 5px; right: 5px;
+		}
+		nav.side-bar ul.nav-menu > li {
+			position: relative;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+
+			> a + ul {
+				position: absolute;
+				top:0; left: 100%;
+				width: 200px;
+				z-index: 100;
+				padding: 0;
+				display: block;
+			
+				transform: rotateY(90deg);
+				transform-origin: left;
+
+				& > li:last-child {
+					margin-bottom: 10px;
+				}
+				& > li.title {
+					background: #10123B;
+					display: block;
+					padding: 0 20px;
+					margin-bottom: 10px;
+				}
+				& > li a {
+					padding: 0 20px;
+				}
+			}
+			&:hover > ul {
+				max-height: initial;
+				transform: rotateY(0);
+			}
+		}
+	}
+}
+
+@media (max-width: @screen-sm-min) {
+	aside[role="navigation"] {
+		left: -220px;
+		transition: all .1s linear;
+	}
+	body.offcanvas {
+		aside[role="navigation"] {
+			left: 0;
+		}
+		.wrapper, .navbar.navbar-default.navbar-static-top {
+			left: 220px;
+		}
+	}
+}

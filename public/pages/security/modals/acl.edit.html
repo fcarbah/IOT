@@ -1,0 +1,55 @@
+
+<div class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="toggleModal(1);$hide()">&times;</button>
+                <h4 class="modal-title">Edit IP Filter Rule</h4>
+            </div>
+            <div class="modal-body">
+                
+                <form class="form-inline row" role="form" name="editForm">
+
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': editForm.startIp.$invalid && editForm.startIp.$touched, 'has-success': editForm.startIp.$valid }">
+                        <label>Start Ip </label>
+                        <input type="text" class="form-control" ipmask="ipv4" name="startIp" required
+                            ng-pattern="ipPattern" ng-model="editFilter.startIp">
+                        
+                        <div ng-messages="editForm.startIp.$error" ng-if="editForm.startIp.$touched">
+                            <p class="error text-danger" ng-message="required">Start IP is required</p>
+                            <p class="error text-danger" ng-show="editForm.startIp.$error.pattern">Invalid IP Address</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': editForm.endIp.$invalid && editForm.endIp.$touched, 'has-success': editForm.endIp.$valid }">
+                        <label>End Ip </label>
+                        <input type="text" class="form-control" ipmask="ipv4" name="endIp" ng-required="editFilter.endIp != ''"
+                            ng-pattern="ipOptional" ng-model="editFilter.endIp">
+                        
+                        <div ng-messages="editForm.endIp.$error" ng-if="editForm.endIp.$touched">
+                            <p class="error text-danger" ng-message="required">End IP is required</p>
+                            <p class="error text-danger" ng-show="editForm.endIp.$error.pattern">Invalid IP Address</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grup col-md-4" ng-class="{ 'has-error': editForm.mode.$invalid && editForm.mode.$touched, 'has-success': editForm.mode.$valid }">
+                        <label>Mode </label>
+                        <select class="form-control" ng-model="editFilter.accessType" name="mode" required>
+                            <option ng-repeat="item in accessTypes" ng-selected="item.id==editFilter.accessType" value="{{item.id}}">{{item.value}}</option>
+                        </select>
+                        
+                        <div ng-messages="editForm.mode.$error" ng-if="editForm.mode.$touched">
+                            <p class="error text-danger" ng-message="required">Access Type is required</p>
+                        </div>
+                    </div>
+
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-flat" ng-click="toggleModal(1);$hide()"><span class="fa fa-remove"></span> Cancel</button>
+                <button class="btn btn-success pull-right btn-flat" ng-click="updateIpFilter()"><span class="fa fa-check"></span> Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+
+<div class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="toggleModal(1);$hide()">&times;</button>
+                <h4 class="modal-title">Edit Contact "{{contact.name}}"</h4>
+            </div>
+            <div class="modal-body">
+                
+                <form class="row" name="editForm">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.name.$invalid && editForm.name.$touched, 'has-success': editForm.name.$valid }">
+                            <label class="control-label"><span>Name</span></label>
+                            <input type="text" class="form-control" placeholder="Full Name" name="name" ng-model="contact.name" required>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.type.$invalid && editForm.type.$touched, 'has-success': editForm.type.$valid }">
+                            <label class="control-label"><span>Contact Type</span></label>
+                            <select class="form-control" ng-model="contact.type" name="type" required>
+                                <option ng-repeat="item in types" value="{{item.id}}">{{item.value}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.phone.$invalid && editForm.phone.$touched, 'has-success': editForm.phone.$valid }">
+                            <label class="control-label"><span>Phone</span></label>
+                            <input type="text" class="form-control" ui-mask="9?9?9?-9?9?9?-9?999" ng-pattern="/\d{3}|\d{7}|\d{10}/" name="phone" ng-model="contact.phone" required>
+                            <div ng-messages="editForm.phonep.$error" ng-if="editForm.phone.$touched">
+                                <p class="error text-danger" ng-show="editForm.phone.$error.pattern">Invalid Phone Number</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.email.$invalid && editForm.email.$touched, 'has-success': editForm.email.$valid }">
+                            <label class="control-label"><span>Email</span></label>
+                            <input type="email" class="form-control" placeholder="example@test.com" name="email" ng-model="contact.email" ng-required="newContact.alertTypes.indexOf('Email') >=0">
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': editForm.alert.$invalid && editForm.alert.$touched, 'has-success': editForm.alert.$valid }">
+                            <label class="control-label"><span>Notification Type</span></label>
+                            <button type="button" placeholder="Select one or more" required class="form-control btn btn-default" name="alert" ng-model="contact.alertTypes" ng-options="alert.id as alert.value for alert in alertTypes" bs-select data-multiple="1">Action <span class="caret"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default  btn-flat" ng-click="toggleModal(1)"><span class="fa fa-remove"></span> Cancel</button>
+                <button class="btn btn-success pull-right btn-flat"  ng-click="updateContact()"><span class="fa fa-check"></span> Save</button>
+            </div>
+        </div>
+    </div>
+</div>

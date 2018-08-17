@@ -1,0 +1,80 @@
+<nav class="side-bar" ui-side-menu mb-scrollbar="scrollbarConfig">
+    
+    <a class="brand" href ui-sref="app.admin.dashboard" title="Debut UI Kit">
+        <img src="assets/img/logo-md.png" alt="Debut UI Kit" class="large">
+        <img src="assets/img/logo_dashboard_small.svg" alt="Debut UI Kit" class="small">
+    </a>
+    
+    <ul class="nav-menu">
+        <li data-state="close" ng-show="permissions.dashboard.view">
+            <a href ui-sref="app.admin.dashboard" ui-sref-active="active" class="icon-monitor" genie-wish="Home / Dashboard"><span>Dashboard</span></a>
+        </li>
+
+        <li data-state="close">
+            <a href class="icon-gear" ng-show="permissions.configuration.view">
+                <span>Configuration</span>
+            </a>
+            <ul>
+                <li class="title">Configuration</li>
+                <li ng-show="permissions.configuration.temperature.view"><a href ui-sref="app.admin.config.temp" ui-sref-active="active" genie-wish="Configuration / Temperature">Temperature</a></li>
+                <li ng-show="permissions.configuration.notifications.view"><a href ui-sref="app.admin.config.notif" ui-sref-active="active" genie-wish="Configuration / Notifications">Notification</a></li>
+                <li ng-show="permissions.configuration.contacts.view"><a href ui-sref="app.admin.config.contacts" ui-sref-active="active" genie-wish="Configuration / Contacts">Contacts</a></li>
+                <li ng-show="permissions.configuration.network.view"><a href ui-sref="app.admin.config.network" ui-sref-active="active" genie-wish="Configuration / Network">Network</a></li>
+                <li ng-show="permissions.configuration.wireless.view"><a href ui-sref="app.admin.config.wireless" ui-sref-active="active" genie-wish="Configuration / Wireless">Wireless</a></li>
+            </ul>
+        </li>
+        
+        <li data-state="close" ui-sref-active="active" ng-show="permissions.camera.view">
+            <a href ui-sref="app.admin.camera.index" class="icon-camera" genie-wish="Camera"><span>Camera</span></a>
+        </li>
+        
+        <li data-state="close" ng-show="permissions.device.view">
+            <a href class="icon-fork-spanner">
+                <span>Device</span>
+            </a>
+            <ul>
+                <li class="title">Device</li>
+                <li ng-show="permissions.device.info.view"><a href ui-sref="app.admin.device.info" ui-sref-active="active" genie-wish="Device / Information">Information</a></li>
+                <li ng-show="permissions.device.logs.view"><a href ui-sref="app.admin.device.log" ui-sref-active="active" genie-wish="Device / Logs">Logs</a></li>
+            </ul>
+        </li>
+        
+        <li data-state="close" ng-show="permissions.mobile.view">
+            <a href class="icon-phone">
+                <span>Mobile</span>
+            </a>
+            <ul>
+                <li class="title">Mobile</li>
+                <li ng-show="permissions.mobile.keys.view"><a href ui-sref="app.admin.mobile.keys" ui-sref-active="active" genie-wish="Mobile / API Keys">API Keys</a></li>
+            </ul>
+        </li>
+        
+        <li data-state="close" ng-show="permissions.security.view">
+            <a href class="icon-lock">
+                <span>Security</span>
+            </a>
+            <ul>
+                <li class="title">Security</li>
+                <li ng-show="permissions.security.acl.view"><a href ui-sref="app.admin.security.acl" ui-sref-active="active" genie-wish="Security / Access Control">Access Control</a></li>
+                <li ng-show="permissions.security.ap.view"><a href ui-sref="app.admin.security.ap" ui-sref-active="active" genie-wish="Security / Account Policies">Account Policies</a></li>
+            </ul>
+        </li>
+        
+        <li data-state="close" ui-sref-active="active" ng-show="permissions.users.view">
+            <a href ui-sref="app.admin.users" class="icon-user-list" genie-wish="Users"><span>Users</span></a>
+        </li>
+        
+<!--        <li data-state="close">
+            <a href class="icon-user-list">
+                <span>Users</span>
+            </a>
+            <ul>
+                <li class="title">Users</li>
+                <li><a href ui-sref="app.admin.users.manage" ui-sref-active="active" genie-wish="Users / Manage Users">Manage Users</a></li>
+                <li><a href ui-sref="app.admin.users.add" ui-sref-active="active" genie-wish="Users / Add">Add</a></li>
+            </ul>
+        </li>-->
+
+    </ul>
+
+</nav>

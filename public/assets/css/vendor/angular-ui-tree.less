@@ -1,0 +1,57 @@
+@tree-placeholder-bg: fade(@brand-success, 20%);
+@tree-placeholder-border: fade(@brand-success, 10%);
+
+@tree-node-padding: 6px 8px;
+
+.angular-ui-tree-nodes {
+    list-style: none;
+    padding:0;
+    margin: 0;
+
+    .fa {
+        color: #aeb2b5;
+        font-size: 14px;
+    }
+
+    li .item {
+        border-radius: @border-radius-base;
+        border: 1px solid @panel-inner-border;
+        font-size: 15px;
+        padding: @tree-node-padding;
+        margin: 6px 0;
+        line-height: 1.6em;
+    
+        &[class^="bg-"], &[class*="bg-"] {
+            border: none;
+        }
+
+        &.bg-muted, &.bg-danger, &.bg-warning {
+            .fa { color: @text-color; }
+        }
+        &.bg-success, &.bg-primary, &.bg-info {
+            .fa { color: #fff; }
+        }
+    }
+    li ol {
+        margin-left: 20px;
+    }
+    .angular-ui-tree-handle {
+        cursor: move;
+        margin: 0 5px 0 0;
+    }
+    .angular-ui-tree-placeholder {
+        border: 1px dashed @brand-success;
+        height: 40px;
+        border-radius: @border-radius-base;
+        background-color: fade(@brand-success, 20%);
+    }
+}
+.angular-ui-tree-drag {
+    position: absolute;
+    pointer-events: none;
+    z-index: 999;
+    opacity: .8;
+}
+
+
+

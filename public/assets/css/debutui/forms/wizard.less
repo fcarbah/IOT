@@ -1,0 +1,125 @@
+.form-wizard {
+	position: relative;
+
+	.tabs {
+		padding: 0;
+		margin: 0;
+		display: table;
+		table-layout: fixed;
+		width: 100%;
+		background-color: #fff;
+
+		li {
+			display: table-cell;
+			border-right: 1px solid @panel-inner-border;
+			border-bottom: 4px solid @panel-inner-border;
+
+			a,button {
+				display: block;
+				color: @gray;
+				width: 100%;
+				text-align: center;
+				padding: 15px 0;
+				position: relative;
+				border: none;
+				background-color: transparent;
+
+				&:after {
+					content: attr(data-step);
+					z-index: 2;
+					font-size: 10px;
+					position: absolute;
+					font-weight: @font-bold;
+					background-color: @panel-inner-border;
+					border-radius: 200px;
+					color: #fff;
+					bottom: -13px;
+					left: 50%;
+					margin-left: -4px;
+					padding: 8px;
+					line-height: 0.6em;
+				}
+				&[disabled] {
+					color: fade(@gray, 20%);
+					pointer-events: none;
+					&:hover { cursor: no-drop; }
+				}
+			}
+			&.active {
+				a,button {
+					&:after {
+						background-color: @brand-success;
+					}
+				}
+			}
+		}
+		li:last-child {
+			border-right: none;
+		}
+	}
+	.bar {
+		display: block;
+		position: absolute;
+		bottom: 0; left: 0;
+		width: 0%;
+		height: 4px;
+		background-color: @brand-success;
+
+		transition: all .3s ease-in;
+	}
+
+}
+.wizard-vertical {
+	.tabs {
+		width: 100%;
+		display: block;
+
+		li {
+			display: block;
+			width: 100%;
+			border-bottom: 1px solid @panel-inner-border;
+
+			> *:first-child {
+				&:after {
+					content: attr(data-step);
+					z-index: 2;
+					font-size: 10px;
+					position: absolute;
+					font-weight: @font-bold;
+					background-color: @panel-inner-border;
+					border-radius: 200px;
+					color: #fff;
+					bottom: initial;
+					top: 50%;
+					left: 15px;
+					margin-top: -10px;
+					padding: 8px;
+					line-height: 0.6em;
+				}
+			}
+			&.active *:first-child {
+				background-color: @brand-success;
+				color: #fff;
+
+				&:after {
+					border: 1px solid #fff;
+				}
+			}
+		}
+		li:last-child {
+			border-right: 1px solid @panel-inner-border;
+			border-bottom: none;
+		}
+	}
+	.bar {
+		display: none;
+	}
+}
+.wizard-pane {
+	padding-top: 20px;
+	display: none;	
+	
+	&.active {
+		display: block;
+	}
+}

@@ -1,0 +1,64 @@
+<div id="page-heading">
+    <h3 class="page-title">Mobile API Keys</h3>
+</div>
+
+
+<section class="container-fluid">
+
+    <div class="row">
+        <div class="alert alert-info">API Keys are required for Mobile App Authentication to Server</div>
+        <div class="col-md-12">
+            <article class="panel panel-primary" >
+                <header class="panel-heading">
+                    API Keys
+                    <div class="panel-options">
+                            <a href="" data-toggle="refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="" data-toggle="minimize">
+                                    <i class="fa fa-minus"></i>
+                                    <i class="fa fa-plus"></i>
+                            </a>
+                    </div>
+                </header>
+
+                <section class="panel-body">
+
+                    <div class="row pad-10">
+                        <button type="button" class="pull-right btn btn-info icon-standalone pull-right" ng-click="toggleModal(0,'open')" ng-show="hasPermission('mobile.keys.add')">
+                            <i class="fa fa-plus"></i> <span>Add Mobile API Key</span>
+                        </button>
+                    </div>
+
+                    <div class="row pad-10p font-32 grey-text text-lighten-1 text-center" ng-if="keys.length <1">
+                        No Mobile API Keys<br/>
+                    </div>
+
+                    <div class="row">
+                        <table ng-table="keysTable" class="table ng-table-responsive">
+                        <tr ng-repeat="item in $data">
+
+                            <td data-title="'Name'" sortable="'name'">{{ item.name }}</td>
+
+                            <td data-title="'Key'">{{ item.key }}</td>
+
+                            <td data-title="'Options'">
+                                <div class="btn-group">
+                                    <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                    <ul role="menu" class="dropdown-menu">
+                                        <li role="presentation" class="dropdown-header">Actions</li>
+                                        <li><a href="" ng-show="hasPermission('mobile.keys.edit')" ng-click="refreshKey(item)">Regenerate Key</a></li>
+                                        <li><a href="" ng-show="hasPermission('mobile.keys.delete')" ng-click="toogleDeleteForm(item)">Delete Key</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+
+                </section>
+
+            </article>
+        </div>
+
+    </div>
+
+</section>
